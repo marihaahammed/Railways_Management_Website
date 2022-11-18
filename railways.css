@@ -1,0 +1,136 @@
+/* CSS goes here */
+/* This is where the magic happens */
+#Navigatebar{
+display: flex;
+max-width: 100%;
+max-height: 30%;
+background-image: linear-gradient(to right, #000000, #000000);                                     
+flex-wrap: wrap;
+}
+.bars{
+display: inline;
+margin-left: 24px;
+margin-right: 24px;
+border: none;
+padding-top: 15px;
+padding-bottom: 15px;
+background: none;
+background-color: inherit;
+transition: all 0.5s;
+transition-timing-function: ease-in;
+align-content: center;
+}
+#Navigatebar:hover{
+background-image: linear-gradient(to left, #000000, #000000);
+}
+.nav{
+margin-left: 60px;
+margin-right: 60px;
+display: inline;
+border: none;
+padding-top: 20px;
+padding-bottom: 20px;
+background-color: rgba(0, 0, 0, 0);
+margin: none;
+font-family: Garamond, Times New Roman, sans-serif;
+font-size: 100%;
+font-variant: small-caps;
+color: #ffffff;
+align-content: center;
+}
+.bars:hover{
+background-color: #111111;
+}
+.nav:hover{
+cursor: pointer;
+text-shadow: #194D33;
+}
+.bars:active{
+background-color:rgb(227, 217, 146);
+}
+.nav span{
+display: inline-block;
+position: relative;
+transition: 0.5s;
+}
+.nav span:after{
+content: '\00bb';
+position: absolute;
+opacity: 0;
+top: 0;
+right: 0;
+transition: 0.5s;
+}
+.nav:hover span:after{
+opacity: 1;
+}
+#para{
+padding-left: 25%;
+max-width: 50%;
+padding-bottom: 20px;
+font-family: Aileron Regular, Garamond, Times New Roman;
+text-align: center;
+font-size: 17px;
+}
+#frapar{
+background-color: #cfcfcf;
+max-width: 50%;
+padding-right: 50px;
+padding-left: 50px;
+padding-bottom: 50px;
+padding-top: 45px;
+font-family: Aileron Regular, Garamond, Times New Roman;
+text-align: justify;
+
+}
+hr{
+border: 1px solid rgba(27, 25, 10, 0.5);
+}
+#logo{
+border-radius: 50px;
+}
+#footer{
+background-color: #8da2a6;
+border: 2px solid white;
+color: white;
+}
+
+#offer{
+max-width: 60%;
+line-height: 2;
+}
+h2{
+font-variant: small-caps;
+font-family: Aileron Regular, Garamond, Times New Roman;
+}
+
+h1{
+font-variant: small-caps;
+font-family: Aileron Regular, Garamond, Times New Roman;
+}
+h3{
+font-variant: small-caps;
+font-family: Aileron Regular, Garamond, Times New Roman;
+}
+#table{
+max-width: 80%;
+}
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+}
+
+/* Bottom right text */
+.text-block {
+position: absolute; /* Position the background text */
+  bottom: 25%; /* At the bottom. Use top:0 to append it to the top */
+right: 25%;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(260, 260, 260, 0.6); /* Black background with 0.5 opacity */
+  color: #000000; /* Grey text */
+  width: 50%; /* Full width */
+height: 50%;
+  padding: 10px; /* Some padding */
+text-align: center;
+}
