@@ -1,0 +1,44 @@
+<?php 
+$servername = "localhost";
+$username = "bgall1";
+$password = ""; //Will add it later 
+$dbname = "bgall1"
+
+  $conn = new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error){
+    die("Connection Failed: " . $conn->connect_error);
+    }
+    
+ $sql = "SELECT * FROM Destination";  
+ $result = mysqli_query($conn, $sql);  
+   
+ $conn->close();
+?>
+
+<?php 
+$servername = "localhost";
+$username = "bgall1";
+$password = ""; //Will add it later 
+$dbname = "bgall1"
+
+  $conn = new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error){
+    die("Connection Failed: " . $conn->connect_error);
+    }
+$type = mysqli_real_escape_string($conn, $_REQUEST['type']);
+$weight = mysqli_real_escape_string($conn, $_REQUEST['weight']);
+$owner = mysqli_real_escape_string($conn, $_REQUEST['owner']);
+$car_number = mysqli_real_escape_string($conn, $_REQUEST['car_number']);
+$train_ID = mysqli_real_escape_string($conn, $_REQUEST['train_ID']);
+ 
+// Attempt insert query execution
+$sql = "INSERT INTO Cargo (type, weight, owner, car_number, train_ID) VALUES ('$type', '$weight', '$owner', 'car_number', 'train_ID')";
+if(mysqli_query($conn, $sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+}
+
+ $conn->close();
+ 
+?>
