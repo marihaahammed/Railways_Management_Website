@@ -81,6 +81,7 @@ $sql = "CREATE TABLE User
   first_name VARCHAR(15) NOT NULL,
   last_name VARCHAR(15) NOT NULL,
   user_ID INT NOT NULL,
+  role_ID INT NOT NULL,
   PRIMARY KEY (user_ID)
 )";
 
@@ -185,6 +186,54 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Error creating table: " . $conn->error;
 }
+
+$sql = "$sql = "INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID)
+VALUES ('yshaikh', 'y_pword', 'yaseen', 'shaikh', 0, 0)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Row added successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$sql = "$sql = "INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID)
+VALUES ('kpatel', 'k_pass', 'khushi', 'patel', 1, 1)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Row added successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$sql = "$sql = "INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID)
+VALUES ('bgall', 'b_pass', 'brandon', 'gall', 2, 0)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Row added successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$sql = "$sql = "INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID)
+VALUES ('mahammed', 'm_pword', 'mariha', 'ahammed', 3, 1)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Row added successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$sql = "$sql = "INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID)
+VALUES ('jjoseph', 'j_pword', 'jackson', 'joseph', 4, 1)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Row added successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+
+
 
 mysqli_close($conn);
 ?>
