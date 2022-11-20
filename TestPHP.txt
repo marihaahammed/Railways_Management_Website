@@ -10,7 +10,16 @@ $dbname = "bgall1"
     }
     
  $sql = "SELECT * FROM Destination";  
- $result = mysqli_query($conn, $sql);  
+ $result = $conn->query($sql);  
+
+ if ($result->num_rows > 0) {
+     // output data of each row
+       while($row = $result->fetch_assoc()) {
+           echo "Station Id: " . $row["station_ID"]. " - Source: " . $row["source"]. " - Destination: " . $row["destination"]. "<br>";
+             }
+             } else {
+               echo "0 results";
+               }
    
  $conn->close();
 ?>
