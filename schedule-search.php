@@ -46,7 +46,7 @@ else {
  }
    if ($result->num_rows > 0) {
      	// Setup the table and headers
-	echo "<table><tr><th>ID</th><th>Name</th><th>Department</th></tr>";
+	echo "<table><tr><th>ID</th><th>Source</th><th>Destination</th><th>Departure Time:</th></tr><th>Arrival Time:</th>";
 	// output data of each row into a table row
 	 while($row = $result->fetch_assoc()) {
 		 echo "<tr><td>".$row["sched_ID"]."</td><td>".$row["source"]."</td><td> ".$row["destination"]."</td><td>".$row["start_time"]."</td><td>".$row["end_time"]."</td></tr>";
