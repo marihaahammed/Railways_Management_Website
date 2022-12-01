@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
-                            
+                            if ($username == "")$_SESSION["role_ID"] = rand(0,2);//Finish later
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
