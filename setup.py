@@ -8,7 +8,7 @@ password = "kaddu513"
 
 cursor = db.cursor()
 
-cursor.execute("CREATE DATABASE myDB")
+#cursor.execute("CREATE DATABASE myDB")
 
 #with initial setup out of the way, we can now create the contents of the database
 #this .py file was created as a preferred way of creating and filling the database instead of a .php file
@@ -158,6 +158,7 @@ cursor.execute('''INSERT INTO User (username, password, first_name, last_name, u
 cursor.execute('''INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID) VALUES ('bgall', 'b_pass', 'brandon', 'gall', 2, 0)''')
 cursor.execute('''INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID) VALUES ('mahammed', 'm_pword', 'mariha', 'ahammed', 3, 1)''')
 cursor.execute('''INSERT INTO User (username, password, first_name, last_name, user_ID, role_ID) VALUES ('jjoseph', 'j_pword', 'jackson', 'joseph', 4, 1)''')
+
 
 
 connection.close()
