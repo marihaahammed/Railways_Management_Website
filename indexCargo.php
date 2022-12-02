@@ -24,7 +24,7 @@
                     sesstion_start();
 					include('connection.php');
 					$query=mysqli_query($conn,"SELECT * FROM 'Cargo'");
-                    if(isset( $_SESSION['loggedin']) && $_SESSION['role_ID']>=1){
+                    if(isset($_SESSION['loggedin']) && $_SESSION['role_ID']>=1){
 					    while($row=mysqli_fetch_array($query)){
 						    ?>
 						    <tr>
@@ -41,6 +41,9 @@
                     
 						    <?php
 					    }
+                    }elseif(isset($_SESSION['loggedin']) && $_SESSION['role_ID'] == 0){
+                        echo "Access Denied";
+                        die(); 
                     }
 				?>
 			</tbody>
