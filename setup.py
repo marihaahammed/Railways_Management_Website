@@ -8,7 +8,7 @@ password = "dJTy7cg2",
 
 cursor = db.cursor()
 
-cursor.execute("CREATE DATABASE myDB")
+#cursor.execute("CREATE DATABASE myDB")
 
 #with initial setup out of the way, we can now create the contents of the database
 #this .py file was created as a preferred way of creating and filling the database instead of a .php file
