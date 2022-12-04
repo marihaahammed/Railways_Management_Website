@@ -1,69 +1,54 @@
 /* CSS goes here */
 /* This is where the magic happens */
-#Navigatebar{
-display: flex;
-max-width: 100%;
-max-height: 30%;
-background-image: linear-gradient(to right, #000000, #000000);                                     
-flex-wrap: wrap;
+
+header.imgHeader {
+  text-align: center;
+  background-color: black;
+  position: sticky;
 }
-.bars{
-display: inline;
-margin-left: 24px;
-margin-right: 24px;
-border: none;
-padding-top: 15px;
-padding-bottom: 15px;
-background: none;
-background-color: inherit;
-transition: all 0.5s;
-transition-timing-function: ease-in;
-align-content: center;
+.logo {
+  width: 90px;
+  border-radius: 50px;
+  margin-top: 15px;
 }
-#Navigatebar:hover{
-background-image: linear-gradient(to left, #000000, #000000);
+
+nav {
+  background-color: black;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  text-align: center;
+  overflow: hidden;
+  top: 0;
 }
-.nav{
-margin-left: 60px;
-margin-right: 60px;
-display: inline;
-border: none;
-padding-top: 20px;
-padding-bottom: 20px;
-background-color: rgba(0, 0, 0, 0);
-margin: none;
-font-family: Garamond, Times New Roman, sans-serif;
-font-size: 100%;
-font-variant: small-caps;
-color: #ffffff;
-align-content: center;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-.bars:hover{
-background-color: #111111;
+
+li {
+  display: inline-block;
 }
-.nav:hover{
-cursor: pointer;
-text-shadow: #194D33;
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 75px;
+  padding-bottom: 25px;
+  text-decoration: none;
+  font-family: Garamond, Times New Roman, sans-serif;
 }
-.bars:active{
-background-color:rgb(227, 217, 146);
+
+li a:hover {
+  background-color: grey;
 }
-.nav span{
-display: inline-block;
-position: relative;
-transition: 0.5s;
+.logout {
+  position:absolute;
+  right:0;
 }
-.nav span:after{
-content: '\00bb';
-position: absolute;
-opacity: 0;
-top: 0;
-right: 0;
-transition: 0.5s;
-}
-.nav:hover span:after{
-opacity: 1;
-}
+
 #para{
 padding-left: 25%;
 max-width: 50%;
@@ -72,6 +57,7 @@ font-family: Aileron Regular, Garamond, Times New Roman;
 text-align: center;
 font-size: 17px;
 }
+
 #frapar{
 background-color: #cfcfcf;
 max-width: 50%;
@@ -81,13 +67,14 @@ padding-bottom: 50px;
 padding-top: 45px;
 font-family: Aileron Regular, Garamond, Times New Roman;
 text-align: justify;
-
 }
+
 hr{
 border: 1px solid rgba(27, 25, 10, 0.5);
 }
+
 #logo{
-border-radius: 50px;
+  border-radius: 50px;
 }
 #footer{
 background-color: #8da2a6;
