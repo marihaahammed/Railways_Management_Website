@@ -1,8 +1,8 @@
 <?php
 /* Database credentials. */
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', ''); //Yaseen will fill in
-define('DB_PASSWORD', ''); //Yasee will fil in
+define('DB_USERNAME', 'yshaikh'); //Yaseen will fill in
+define('DB_PASSWORD', 'dJTy7cg2'); //Yasee will fil in
 define('DB_NAME', 'user');
  
 /* Attempt to connect to MySQL database */
