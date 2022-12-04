@@ -6,7 +6,7 @@ define('DB_PASSWORD', 'dJTy7cg2'); //Yasee will fil in
 define('DB_NAME', 'yshaikh');
  
 /* Attempt to connect to MySQL database */
-$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Check connection
 if($mysqli === false){
