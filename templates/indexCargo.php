@@ -6,8 +6,7 @@
 <body>
 	<div>
 		<form method="POST" action="addCargo.php">
-			<label>Firstname:</label><input type="text" name="firstname">
-			<label>Lastname:</label><input type="text" name="lastname">
+			<label>Train ID:</label><input type="text" name="train_ID">
 			<input type="submit" name="add">
 		</form>
 	</div>
@@ -15,8 +14,7 @@
 	<div>
 		<table border="1">
 			<thead>
-				<th>Firstname</th>
-				<th>Lastname</th>
+				<th>Train ID</th>
 				<th></th>
 			</thead>
 			<tbody>

@@ -11,5 +11,5 @@
 
  
 	mysqli_query($conn,"UPDATE `Cargo` SET type='$type', weight='$weight', owner='$owner', car_number ='$carNumber', train_ID='$trainID where train_ID='$id'");
-	header('location:indexCargo.php');
+	header('location:/templates/indexCargo.php');
 ?>
