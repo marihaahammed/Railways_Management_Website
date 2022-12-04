@@ -1,7 +1,17 @@
 /* CSS goes here */
 /* This is where the magic happens */
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
-header.imgHeader {
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+header.logoHead {
   text-align: center;
   background-color: black;
   position: sticky;
@@ -14,7 +24,6 @@ header.imgHeader {
 
 nav {
   background-color: black;
-  position: -webkit-sticky; /* Safari */
   position: sticky;
   text-align: center;
   overflow: hidden;
