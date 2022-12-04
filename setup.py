@@ -61,8 +61,8 @@ cursor.execute('''
 	CREATE TABLE Schedule
 	(
 		sched_ID INT NOT NULL,
-		source INT NOT NULL,
-		destination INT NOT NULL,
+		source VARCHAR(20) NOT NULL,
+		destination VARCHAR(20) NOT NULL,
 		start_time INT NOT NULL,
 		end_time INT NOT NULL,
 		PRIMARY KEY (sched_ID)
