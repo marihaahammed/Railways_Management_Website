@@ -17,13 +17,13 @@ app.config['MYSQL_DB'] = 'yshaikh'
 # Intialize MySQL
 mysql = MySQL(app)
 
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     msg = ''
-#     return render_template('railways.html', msg = msg)
+@app.route('/', methods=['GET', 'POST'])
+def home():
+     msg = ''
+     return render_template('railways.html', msg = msg)
 
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
-@app.route('/')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Output message if something goes wrong...
