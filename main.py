@@ -107,7 +107,7 @@ def sched_search():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT * FROM 'Schedule' WHERE sched_ID = %i",(sched_id,))
     schedules = cursor.fetchall()
-    return render_template('schedule.html', schedules=schedules)
+    return render_template('schedSearch.html', schedules=schedules)
 # http://localhost:5000/pythinlogin/register - this will be the registration page, we need to use both GET and POST requests
 #@app.route('/pythonlogin/register', methods=['GET', 'POST'])
 #def register():
