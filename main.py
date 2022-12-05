@@ -22,6 +22,10 @@ def home():
      msg = ''
      return render_template('railways.html', msg = msg)
 
+@app.route('/AboutUs')
+def about():
+     msg = ''
+     return render_template('AboutUs.html', msg=msg)
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 
 @app.route('/login', methods=['GET', 'POST'])
