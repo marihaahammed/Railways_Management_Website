@@ -84,8 +84,15 @@ def cargo_delete():
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
 
-@app.route('/cargo/update', methods = ['UPDATE'])
+@app.route('/cargo/update', methods = ['GET', 'POST'])
 def cargo_update():
+	if request.method == 'GET':
+		cargo_ID = request.arg['cargo_ID']
+		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
+		cargo = cursor.fetchone()
+		return render_template('editCargo.html', cargo=cargo)
+	elif request.method == 'POST':
                 type = request.form['type']
                 weight = request.form['weight']
                 owner = request.form['owner']

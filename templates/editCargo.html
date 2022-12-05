@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Basic MySQLi Commands</title>
+</head>
+<body>
+	<h2>Edit</h2>
+	<form method="POST" action="/cargo/update?cargo_ID={{cargo['cargo_ID']}}">
+		<label>Type:</label><input type="number" value= "{{cargo['type']}}" name="type">
+		<label>Weight:</label><input type="number" value="{{cargo['weight']}}" name="weight">
+		<label>Owner:</label><input type="text" value="{{cargo['owner']}}" name="owner">
+        <label>Car Number:</label><input type="number" value="{{cargo['car_number']}}" name="car_number">
+        <label>Train ID:</label><input type="number" value="{{cargo['train_ID']}}" name="train_ID">
+        <input type="submit" name="submit">
+		<a href= "/" >Back</a>
+	</form>
+</body>
+</html>
