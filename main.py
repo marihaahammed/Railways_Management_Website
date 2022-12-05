@@ -65,42 +65,51 @@ def logout():
 #localhost:5003/cargo
 @app.route('/cargo', methods = ['GET', 'POST'])
 def cargo():
-	if request.method == 'POST':
-		type = request.form['type']
-		weight = request.form['weight']
-		owner = request.form['owner']
-		car_number = request.form['car_number']
-		train_ID = request.form['train_ID']
-		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-		cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
 
-	elif request.method == 'GET':
-		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-		cursor.execute("SELECT * FROM 'Cargo'")
-		cargos = cursor.fetchall()
-		return render_template('cargo.html', cargos=cargos)
+    if request.method == 'POST':
+        type = request.form['type']
+        weight = request.form['weight']
+        owner = request.form['owner']
+        car_number = request.form['car_number']
+        train_ID = request.form['train_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+
+    elif request.method == 'GET':
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM 'Cargo'")
+        cargos = cursor.fetchall()
+        return render_template('cargo.html', cargos=cargos)
 
 #localhost:5003/cargo/delete
 @app.route('/cargo/delete', methods = ['POST'])
 def cargo_delete():
-                type = request.form['type']
-                weight = request.form['weight']
-                owner = request.form['owner']
-                car_number = request.form['car_number']
-                train_ID = request.form['train_ID']
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    type = request.form['type']
+    weight = request.form['weight']
+    owner = request.form['owner']
+    car_number = request.form['car_number']
+    train_ID = request.form['train_ID']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
 
 #localhost:5003/cargo/update
 @app.route('/cargo/update', methods = ['GET', 'POST'])
 def cargo_update():
-	if request.method == 'GET':
-		cargo_ID = request.arg['cargo_ID']
-		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-		cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
-		cargo = cursor.fetchone()
-		return render_template('editCargo.html', cargo=cargo)
-	elif request.method == 'POST':
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cargo_ID = request.arg['cargo_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
+        cargo = cursor.fetchone()
+        return render_template('editCargo.html', cargo=cargo)
+    elif request.method == 'POST':
                 type = request.form['type']
                 weight = request.form['weight']
                 owner = request.form['owner']
@@ -112,6 +121,9 @@ def cargo_update():
 #http://localhost:5003/schedule-search
 @app.route('/schedule-search', methods = ['GET'])
 def sched_search():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
     sched_id = request.form['sched_ID']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT * FROM 'Schedule' WHERE sched_ID = %i",(sched_id,))
