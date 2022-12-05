@@ -41,13 +41,13 @@ def login():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM User WHERE username = %s AND password = %s', (username, password,))
         # Fetch one record and return result
-        account = cursor.fetchone()
+        User = cursor.fetchone()
         # If account exists in accounts table in out database
-        if account:
+        if User:
             # Create session data, we can access this data in other routes
             session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
+            #session['id'] = User['id']
+            session['username'] = User['username']
             # Redirect to home page
             return redirect(url_for('home')) #need to insert url for the employee page HERE
         else:
