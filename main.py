@@ -9,10 +9,10 @@ app = Flask(__name__)
 app.secret_key = 'your secret key'
 
 # Enter your database connection details below
-#app.config['MYSQL_HOST'] = 'localhost'
-#app.config['MYSQL_USER'] = 'wreed6'
-#app.config['MYSQL_PASSWORD'] = 'x'
-#app.config['MYSQL_DB'] = 'wreed6'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'yshaikh'
+app.config['MYSQL_PASSWORD'] = 'dJTy7cg2'
+app.config['MYSQL_DB'] = 'yshaikh'
 
 # Intialize MySQL
 mysql = MySQL(app)
@@ -44,7 +44,7 @@ def login():
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
+    return render_template('railways.html', msg=msg)
 
     # http://localhost:5000/python/logout - this will be the logout page
 
@@ -57,6 +57,43 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
+@app.route('/cargo', methods = ['GET', 'POST', 'UPDATE', 'DELETE'])
+def cargo():
+	if request.method == 'POST':
+		type = request.form['type']
+		weight = request.form['weight']
+		owner = request.form['owner']
+		car_number = request.form['car_number']
+		train_ID = request.form['train_ID']
+		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+		cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+
+	elif request.method == 'GET':
+		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+		cursor.execute("SELECT * FROM 'Cargo'")
+		cargos = cursor.fetchall()
+		return render_template('cargo.html', cargos=cargos)
+
+@app.route('/cargo/delete', methods = ['POST'])
+def cargo_delete():
+                type = request.form['type']
+                weight = request.form['weight']
+                owner = request.form['owner']
+                car_number = request.form['car_number']
+                train_ID = request.form['train_ID']
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
+
+@app.route('/cargo/update', methods = ['UPDATE'])
+def cargo_update():
+                type = request.form['type']
+                weight = request.form['weight']
+                owner = request.form['owner']
+                car_number = request.form['car_number']
+                train_ID = request.form['train_ID']
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, tr>
+      
 # http://localhost:5000/pythinlogin/register - this will be the registration page, we need to use both GET and POST requests
 #@app.route('/pythonlogin/register', methods=['GET', 'POST'])
 #def register():
