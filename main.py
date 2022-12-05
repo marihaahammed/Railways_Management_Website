@@ -92,7 +92,7 @@ def cargo_update():
                 car_number = request.form['car_number']
                 train_ID = request.form['train_ID']
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i"), (type,weight,owner,car_number,train_ID,) tr>
+                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i",type,weight,owner,car_number,train_ID,) 
 
 @app.route('/schedule-search', methods = ['GET'])
 def sched_search():
