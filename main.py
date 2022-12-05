@@ -17,7 +17,7 @@ app.config['MYSQL_DB'] = 'yshaikh'
 # Intialize MySQL
 mysql = MySQL(app)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
      msg = ''
      return render_template('railways.html', msg = msg)
@@ -94,14 +94,14 @@ def register():
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
 
-@app.route('/home')
-def home():
+#@app.route('/home')
+#def home():
     # Check if user is loggedin
-    if 'loggedin' in session:
+   # if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('railways.html', username=session['username'])
+    #    return render_template('railways.html', username=session['username'])
     # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+   # return redirect(url_for('login'))
 
 
 
