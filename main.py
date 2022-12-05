@@ -100,7 +100,14 @@ def cargo_update():
                 train_ID = request.form['train_ID']
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
-      
+
+@app.route('/schedule-search', methods = ['GET'])
+def sched_search():
+    sched_id = request.form['sched_ID']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Schedule' WHERE sched_ID = %i",(sched_id,))
+    schedules = cursor.fetchall()
+    return render_template('schedule.html', schedules=schedules)
 # http://localhost:5000/pythinlogin/register - this will be the registration page, we need to use both GET and POST requests
 #@app.route('/pythonlogin/register', methods=['GET', 'POST'])
 #def register():
