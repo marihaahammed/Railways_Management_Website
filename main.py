@@ -17,10 +17,10 @@ app.config['MYSQL_DB'] = 'yshaikh'
 # Intialize MySQL
 mysql = MySQL(app)
 
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     msg = ''
-#     return render_template('railways.html', msg = msg)
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+     msg = ''
+     return render_template('railways.html', msg = msg)
 
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 @app.route('/')
@@ -94,14 +94,14 @@ def register():
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
 
-@app.route('/home')
-def home():
+#@app.route('/home')
+#def home():
     # Check if user is loggedin
-    if 'loggedin' in session:
+   # if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('railways.html', username=session['username'])
+    #    return render_template('railways.html', username=session['username'])
     # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+   # return redirect(url_for('login'))
 
 
 
