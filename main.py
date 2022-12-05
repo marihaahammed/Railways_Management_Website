@@ -98,7 +98,7 @@ def cargo_update():
 def sched_search():
     sched_id = request.form['sched_ID']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM 'Schedule' WHERE sched_ID = %i")
+    cursor.execute("SELECT * FROM 'Schedule' WHERE sched_ID = %i",(sched_id,))
     schedules = cursor.fetchall()
     return render_template('schedule.html', schedules=schedules)
      
