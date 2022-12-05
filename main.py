@@ -17,6 +17,11 @@ app.config['MYSQL_DB'] = 'yshaikh'
 # Intialize MySQL
 mysql = MySQL(app)
 
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    msg = ''
+    return render_template('railways.html', msg = msg)
+
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 @app.route('/pythonlogin/', methods=['GET', 'POST'])
 def login():
@@ -39,12 +44,12 @@ def login():
             session['id'] = account['id']
             session['username'] = account['username']
             # Redirect to home page
-            return redirect(url_for('home'))
+            return redirect(url_for('home')) #need to insert url for the employee page HERE
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-    return render_template('railways.html', msg=msg)
+    return render_template('loginFinal.html', msg=msg)
 
     # http://localhost:5000/python/logout - this will be the logout page
 
@@ -57,7 +62,8 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
-@app.route('/cargo', methods = ['GET', 'POST', 'UPDATE', 'DELETE'])
+#localhost:5003/cargo
+@app.route('/cargo', methods = ['GET', 'POST'])
 def cargo():
 	if request.method == 'POST':
 		type = request.form['type']
@@ -74,6 +80,7 @@ def cargo():
 		cargos = cursor.fetchall()
 		return render_template('cargo.html', cargos=cargos)
 
+#localhost:5003/cargo/delete
 @app.route('/cargo/delete', methods = ['POST'])
 def cargo_delete():
                 type = request.form['type']
@@ -84,6 +91,7 @@ def cargo_delete():
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
 
+#localhost:5003/cargo/update
 @app.route('/cargo/update', methods = ['GET', 'POST'])
 def cargo_update():
 	if request.method == 'GET':
@@ -101,6 +109,7 @@ def cargo_update():
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
 
+#http://localhost:5003/schedule-search
 @app.route('/schedule-search', methods = ['GET'])
 def sched_search():
     sched_id = request.form['sched_ID']
@@ -143,39 +152,6 @@ def sched_search():
     # Show registration form with message (if any)
     #return render_template('register.html', msg=msg)
 
-# http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for loggedin users
-@app.route('/pythonlogin/home')
-def home():
-    # Check if user is loggedin
-    if 'loggedin' in session:
-        # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'])
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
-
-# http://localhost:5000/pythinlogin/profile - this will be the profile page, only accessible for loggedin users
-@app.route('/pythonlogin/profile')
-def profile():
-    # Check if user is loggedin
-    if 'loggedin' in session:
-        # We need all the account info for the user so we can display it on the profile page
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
-        account = cursor.fetchone()
-        # Show the profile page with account info
-        return render_template('profile.html', account=account)
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
-
-@app.route('/searchform')
-def searchform():
-    # Check if user is loggedin, return redirect to login page if not
-    if 'loggedin' not in session:
-        return redirect(url_for('login'))
-    else:
-        return render_template('form.html', username=session['username'])
-
-
 @app.route('/search', methods = ['POST', 'GET'])
 def search():
     # Check if user is loggedin, return redirect to login page if not
@@ -203,4 +179,4 @@ def search():
 
 
 #run the application
-app.run(host='localhost', port=5000)
+app.run(host='localhost', port=5003)
