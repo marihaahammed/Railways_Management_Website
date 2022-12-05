@@ -89,7 +89,7 @@ def cargo_update():
 	if request.method == 'GET':
 		cargo_ID = request.arg['cargo_ID']
 		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
+		cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
 		cargo = cursor.fetchone()
 		return render_template('editCargo.html', cargo=cargo)
 	elif request.method == 'POST':
@@ -99,7 +99,7 @@ def cargo_update():
                 car_number = request.form['car_number']
                 train_ID = request.form['train_ID']
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, tr>
+                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
       
 # http://localhost:5000/pythinlogin/register - this will be the registration page, we need to use both GET and POST requests
 #@app.route('/pythonlogin/register', methods=['GET', 'POST'])
