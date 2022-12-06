@@ -187,8 +187,8 @@ def RouteView():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM 'Route'")
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from Route")
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()
@@ -215,8 +215,8 @@ def StationView():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM 'Station'")
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from Station")
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()
@@ -229,8 +229,8 @@ def TrackView():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM 'Track'")
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from Track")
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()
@@ -243,8 +243,8 @@ def TrainView():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM 'Train'")
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from Train")
     mysql.connection.commit()
     data = cursor.fetchall()
     cursor.close()

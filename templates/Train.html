@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Train</title>
+	</head>
+	<body>
+		<table border="1" cellpadding="5" cellspacing="5">
+		<tr><th>Train ID</th><th>Train Length</th><th>Route ID</th><th>SChedule ID</th></tr>	
+		{% for row in data %}
+		<tr>
+			{% for d in row %}
+			<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</table>
+	</body>
+</html>
