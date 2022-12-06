@@ -29,7 +29,7 @@ def about():
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 
 @app.route('/EmployeePortal')
-def about():
+def emp():
      msg = ''
      return render_template('employee.html', msg=msg)
      
