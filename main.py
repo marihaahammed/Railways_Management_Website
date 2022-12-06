@@ -30,8 +30,11 @@ def about():
 
 @app.route('/EmployeePortal')
 def emp():
-     msg = ''
-     return render_template('employee.html', msg=msg)
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    msg = ''
+    return render_template('employee.html', msg=msg)
      
 @app.route('/login', methods=['GET', 'POST'])
 def login():
