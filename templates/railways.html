@@ -17,11 +17,10 @@
 		<li><a href="/AboutUs">About Us</a></li>
 		<li><a href="/EmployeePortal">Employee Portal</a></li>
 		{% if session['loggedin'] %}   
-		<li><a href="/login">Log In</a></li>
+			<li><a href="/login">Log In</a></li>
 		{% else %}
-		<li><a href="/logout">Log Out</a></li>
+			<li><a href="/logout">Log Out</a></li>
 		{% endif %}
-		
 	</ul>
 </nav>
 
