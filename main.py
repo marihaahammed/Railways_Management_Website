@@ -120,7 +120,7 @@ def register():
 
 
 #localhost:5003/cargo
-@app.route('/cargo', methods = ['GET', 'POST'])
+@app.route('/cargo')
 def cargo():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -135,10 +135,10 @@ def cargo():
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * from Cargo")
     mysql.connection.commit()
-    cargos = cursor.fetchall()
+    data = cursor.fetchall()
     cursor.close()
-    print(cargos)
-    return render_template('cargo.html', cargos=cargos)
+    print(data)
+    return render_template('cargo.html', data=data)
 
 #localhost:5003/cargo/delete
 @app.route('/cargo/delete', methods = ['POST'])
