@@ -181,30 +181,75 @@ def sched_search():
 # http://localhost:5000/pythinlogin/register - this will be the registration page, we need to use both GET and POST requests
 
 
-@app.route('/search', methods = ['POST', 'GET'])
-def search():
+@app.route('/Route')
+def RouteView():
     # Check if user is loggedin, return redirect to login page if not
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    if request.method == 'GET':
-        return "Fill out the Search Form"
-     
-    if request.method == 'POST':
-        name = request.form['name']
-        id = request.form['id']
-        cursor = mysql.connection.cursor()
-        if name:
-            cursor.execute("SELECT * from instructor where name = %s",[name])
-        if id:
-            cursor.execute("SELECT * from instructor where ID = %s",[id])
-        mysql.connection.commit()
-        data = cursor.fetchall()
-        cursor.close()
-        print(data)
-        #return f"Done!! Query Result is {data}"
-        return render_template('results.html', data=data)
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Route'")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('Route.html', data=data)
 
+@app.route('/Schedule')
+def ScheduleView():
+    # Check if user is loggedin, return redirect to login page if not
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Schedule'")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('Schedule.html', data=data)
+
+@app.route('/Station')
+def StationView():
+    # Check if user is loggedin, return redirect to login page if not
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Station'")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('Station.html', data=data)
+
+@app.route('/Track')
+def TrackView():
+    # Check if user is loggedin, return redirect to login page if not
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Track'")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('Track.html', data=data)
+
+@app.route('/Train')
+def TrainView():
+    # Check if user is loggedin, return redirect to login page if not
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM 'Train'")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('Train.html', data=data)
 
 
 #run the application
