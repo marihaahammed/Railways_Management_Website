@@ -133,7 +133,7 @@ def cargo():
     cursor.execute("SELECT * FROM 'Cargo'")
     mysql.connection.commit()
     cargos = cursor.fetchall()
-    cursor.closr()
+    cursor.close()
     print(cargos)
     return render_template('cargo.html', cargos=cargos)
 
