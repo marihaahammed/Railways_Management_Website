@@ -72,7 +72,7 @@ def cargo():
 		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 		cursor.execute("SELECT * FROM 'Cargo'")
 		cargos = cursor.fetchall()
-		return render_template('cargo.html', cargos=cargos)
+		return render_template('employee.html', cargos=cargos)
 
 @app.route('/cargo/delete', methods = ['POST'])
 def cargo_delete():
