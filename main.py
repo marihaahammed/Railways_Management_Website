@@ -80,7 +80,7 @@ def register():
         lastName = request.form['last_name']
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM Users WHERE username = %s', (username,))
+        cursor.execute('SELECT * FROM User WHERE username = %s', (username,))
         account = cursor.fetchone()
         # If account exists show error and validation checks
         if account:
@@ -91,7 +91,7 @@ def register():
             msg = 'Please fill out the form!'
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
-            cursor.execute('INSERT INTO Users VALUES (%s, %s, %s, %s, Null, 1)', (username, password, firstName, lastName))
+            cursor.execute('INSERT INTO User VALUES (%s, %s, %s, %s, Null, 1)', (username, password, firstName, lastName))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
     elif request.method == 'POST':
