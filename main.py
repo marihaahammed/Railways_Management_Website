@@ -201,7 +201,7 @@ def ScheduleView():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor = mysql.connection.cursor()
     cursor.execute("SELECT * FROM 'Schedule'")
     mysql.connection.commit()
     data = cursor.fetchall()
