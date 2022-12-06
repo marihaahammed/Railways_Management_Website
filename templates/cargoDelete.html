@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cargo Delete</title>
+</head>
+<body>
+	<h2>Delte</h2>
+	<form method="POST" action="/cargo/update?cargo_ID={{cargo['cargo_ID']}}">
+        <label>Train ID:</label><input type="number" value="{{cargo['train_ID']}}" name="train_ID">
+        <input type="submit" name="submit">
+		<a href= "/cargo" >Back</a>
+	</form>
+</body>
+</html>

@@ -117,20 +117,20 @@ def cargo():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    if request.method == 'POST':
-        type = request.form['type']
-        weight = request.form['weight']
-        owner = request.form['owner']
-        car_number = request.form['car_number']
-        train_ID = request.form['train_ID']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
-
-    elif request.method == 'GET':
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("SELECT * FROM 'Cargo'")
-        cargos = cursor.fetchall()
-        return render_template('cargo.html', cargos=cargos)
+    #type = request.form['type']
+        #weight = request.form['weight']
+        #owner = request.form['owner']
+        #car_number = request.form['car_number']
+        #train_ID = request.form['train_ID']
+        #cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        #cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM 'Cargo'")
+    mysql.connection.commit()
+    cargos = cursor.fetchall()
+    cursor.closr()
+    print(cargos)
+    return render_template('cargo.html', cargos=cargos)
 
 #localhost:5003/cargo/delete
 @app.route('/cargo/delete', methods = ['POST'])
@@ -138,13 +138,14 @@ def cargo_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    type = request.form['type']
-    weight = request.form['weight']
-    owner = request.form['owner']
-    car_number = request.form['car_number']
+    #type = request.form['type']
+    #weight = request.form['weight']
+    #owner = request.form['owner']
+    #car_number = request.form['car_number']
     train_ID = request.form['train_ID']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
+    return render_template('cargoDelete.html')
 
 #localhost:5003/cargo/update
 @app.route('/cargo/update', methods = ['GET', 'POST'])
