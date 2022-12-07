@@ -163,7 +163,7 @@ def cargo_update():
         owner = request.form['owner']
         car_number = request.form['carno']
         train_ID = request.form['train_ID']
-        cursor - mysql.connection.cursor()
+        cursor = mysql.connection.cursor()
         cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
         mysql.connection.commit()
         response = cursor.fetchone()
