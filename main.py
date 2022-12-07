@@ -159,6 +159,13 @@ def cargo_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
+    if request.method == 'GET'
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Cargo")
+        data = cursor.fetchall()
+        cursor.close()
+        print(data)
+        return render_template('cargoAdd.html', data = data) #we render the table
     
     if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
         type = request.form['type']
@@ -175,6 +182,7 @@ def cargo_add():
         cursor.close()
         print(data)
         return render_template('cargoAdd.html', data = data) #we render the table
+     
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
