@@ -159,7 +159,7 @@ def cargo_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    if request.method == 'GET'
+    if request.method == 'GET':
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from Cargo")
         data = cursor.fetchall()
