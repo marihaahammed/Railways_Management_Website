@@ -153,17 +153,17 @@ def cargo_update():
         cursor.execute("SELECT * from Cargo")
         data = cursor.fetchall()
         print(data)
-        return render_template('cargoAdd.html', data = data) #we render the table
+        return render_template('editCargo.html', data = data) #we render the table
     
-    if request.method == 'POST' and cargo_ID in request.form and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
-        cargo_ID = request.form['cargoID']
+    if request.method == 'POST' and 'cargo_ID' in request.form and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'train_ID' in request.form:
+        cargo_ID = request.form['cargo_ID']
         type = request.form['type']
         weight = request.form['weight']
         owner = request.form['owner']
         car_number = request.form['carno']
-        train_ID = request.form['trainID']
+        train_ID = request.form['train_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('UPDATE Cargo SET cargo_ID=%s, type=%s, weight=%s, owner=%s, car_number =%s, train_ID=%s where cargo_ID=%s', (type,weight,owner,car_number,train_ID, train_ID))
+        cursor.execute('UPDATE Cargo SET type=%s, weight=%s, owner=%s, car_number =%s, train_ID=%s WHERE cargo_ID=%s', (type,weight,owner,car_number,train_ID, cargo_ID))
         mysql.connection.commit()
         return redirect(url_for('cargo_update'))
 
