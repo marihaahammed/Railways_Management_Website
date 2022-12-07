@@ -108,30 +108,12 @@ def register():
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
 
-#@app.route('/home')
-#def home():
-    # Check if user is loggedin
-   # if 'loggedin' in session:
-        # User is loggedin show them the home page
-    #    return render_template('railways.html', username=session['username'])
-    # User is not loggedin redirect to login page
-   # return redirect(url_for('login'))
-
-
-
 #localhost:5003/cargo
 @app.route('/cargo')
 def cargo():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    #type = request.form['type']
-        #weight = request.form['weight']
-        #owner = request.form['owner']
-        #car_number = request.form['car_number']
-        #train_ID = request.form['train_ID']
-        #cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        #cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * from Cargo")
     mysql.connection.commit()
@@ -146,10 +128,6 @@ def cargo_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    #type = request.form['type']
-    #weight = request.form['weight']
-    #owner = request.form['owner']
-    #car_number = request.form['car_number']
     train_ID = request.form['train_ID']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
@@ -178,13 +156,33 @@ def cargo_update():
 
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
-    cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * from Cargo")
-    mysql.connection.commit()
-    data = cursor.fetchall()
-    cursor.close()
-    print(data)
-    return render_template('cargoAdd.html', data = data) #we render the table
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        return "Fill out the Search Form"
+    
+    if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
+        type = request.form['type']
+        weight = request.form['weight']
+        owner = request.form['owner']
+        car_number = request.form['carno']
+        train_ID = request.form['trainID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("INSERT INTO 'Cargo' (type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+        mysql.connection.commit()
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Cargo")
+        data = cursor.fetchall()
+        cursor.close()
+        print(data)
+        return render_template('cargoAdd.html', data = data) #we render the table
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+        return render_template('cargoAdd.html',msg = msg)
+    
+
 #now need code to apply insertion
     
 
@@ -216,7 +214,32 @@ def RouteView():
     print(data)
     return render_template('Route.html', data=data)
 
-@app.route('/Route/add')
+@app.route('/Route/add', methods = ['GET', 'POST'])
+def RouteAdd(): 
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+    
+    if request.method == 'GET':
+        return "Fill out the Add Form"
+
+    if request.method == 'POST' and 'routeID' in request.form and 'stops' in request.form:
+        routeID = request.form['routeID']
+        stops = request.form['stops']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("INSERT INTO 'Route' (routeID,stops) values (%i, %i)", (routeID,stops))
+        mysql.connection.commit()
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Route")
+        data = cursor.fetchall()
+        cursor.close()
+        print(data)
+        return render_template('routeAdd.html', data = data)
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+        return render_template('routeAdd.html',msg = msg)
+    
+    
 @app.route('/Route/delete')
 @app.route('/Route/update')
 
