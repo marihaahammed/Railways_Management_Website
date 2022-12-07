@@ -177,7 +177,6 @@ def cargo_add():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('INSERT INTO Cargo VALUES (%i, %i, %i, %s, %i, %i)', (cargoID,type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
-        cursor.close()
         #cursor = mysql.connection.cursor()
         #cursor.execute("SELECT * from Cargo")
         #data = cursor.fetchall()
