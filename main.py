@@ -138,7 +138,7 @@ def cargo_delete():
     if request.method == 'POST' and 'train_ID' in request.form :
         train_ID = request.form['train_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID,))
+        cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID))
         mysql.connection.commit()
         return render_template('cargoDelete.html')
 
@@ -149,23 +149,25 @@ def cargo_update():
         return redirect(url_for('login'))
 
     if request.method == 'GET':
-        cargo_ID = request.arg['cargo_ID']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Cargo")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('cargoAdd.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
+        type = request.form['type']
+        weight = request.form['weight']
+        owner = request.form['owner']
+        car_number = request.form['carno']
+        train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM Cargo WHERE cargo_ID = %i', (cargo_ID,))
-        cargo = cursor.fetchone()
-        return render_template('editCargo.html', cargo=cargo)
-    elif request.method == 'POST':
-                type = request.form['type']
-                weight = request.form['weight']
-                owner = request.form['owner']
-                car_number = request.form['car_number']
-                train_ID = request.form['train_ID']
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute('UPDATE Cargo SET cargo_ID=NULL, type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i', (type,weight,owner,car_number,train_ID, train_ID))
+        cursor.execute('UPDATE Cargo SET cargo_ID=NULL, type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i', (type,weight,owner,car_number,train_ID, train_ID))
+        mysql.connection.commit()
+        return redirect(url_for('cargo_add'))
 
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
-    msg = ''
 
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -184,7 +186,7 @@ def cargo_add():
         car_number = request.form['carno']
         train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO Cargo VALUES (NULL, %s, %s, %s, %s, %s)', (type,weight,owner,car_number,train_ID))
+        cursor.execute('INSERT INTO Cargo VALUES (NULL, %i, %i, %s, %i, %i)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         return redirect(url_for('cargo_add'))
 

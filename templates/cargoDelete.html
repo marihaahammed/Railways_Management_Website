@@ -1,15 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>Cargo Delete</title>
-<link rel ="stylesheet" type ="text/css" href ="static/railways.css">
-</head>
-<body>
-	<h2>Delte</h2>
-	<form method="POST" action="/cargo/update?cargo_ID={{cargo['cargo_ID']}}">
-        <label>Train ID:</label><input type="number" value="{{cargo['train_ID']}}" name="train_ID">
-        <input type="submit" name="submit">
-		<a href= "/EmployeePortal" >Back</a>
-	</form>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>Cargo</title>
+		<link rel ="stylesheet" type ="text/css" href ="static/railways.css">
+	</head>
+
+	<body style="background-color: #e1e1e1">
+
+		<header class="logoHead">
+			<img class="logo" src="https://cdn.discordapp.com/attachments/692038836292943873/1049467247367835718/railwayLOGO.png">    
+		</header>
+
+		<nav style="text-align: left">
+			<ul>
+				<li><a href= "/EmployeePortal"> Back</a></li>
+			</ul>
+		</nav>
+		
+		<form method="POST">
+		  Type: <input type="number" name="type" required/>
+		  <br/><br/>
+		  Weight: <input type="number" name="weight" required />
+		  <br/><br/>
+                  Owner: <input type="text" name="owner" required />
+                  <br/><br/>
+                  Car Number: <input type="number" name="carno" required />
+                  <br/><br/>
+                  Train ID: <input type="number" name="trainID" required />
+                  <br/><br/>
+		  <button type="submit">Submit</button>
+		</form>
+		<table>
+		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
+		{% for row in data %}
+		<tr>
+			{% for d in row %}
+			<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</table> 
+	</body>
 </html>
+
