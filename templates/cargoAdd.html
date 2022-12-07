@@ -7,7 +7,7 @@
 	<body>
 		<a href= "/EmployeePortal" >Back</a>
 
-		<form method="post">
+		<form method="POST">
 		  Type: <input name="type"/>
 		  <br/><br/>
 		  Weight: <input name="weight"/>
@@ -22,7 +22,7 @@
 		</form>
 
 		<table border="1" cellpadding="5" cellspacing="5">
-		<tr><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
+		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
 		{% for row in data %}
 		<tr>
 			{% for d in row %}
