@@ -176,7 +176,7 @@ def cargo_update():
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
 
-@app.route('/cargo/add', methods = ['POST'])
+@app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * from Cargo")
@@ -184,7 +184,9 @@ def cargo_add():
     data = cursor.fetchall()
     cursor.close()
     print(data)
-    return render_template('cargoAdd.html', data = data)
+    return render_template('cargoAdd.html', data = data) #we render the table
+#now need code to apply insertion
+    
 
 #http://localhost:5003/schedule-search
 @app.route('/schedule-search', methods = ['GET'])
@@ -214,6 +216,10 @@ def RouteView():
     print(data)
     return render_template('Route.html', data=data)
 
+@app.route('/Route/add')
+@app.route('/Route/delete')
+@app.route('/Route/update')
+
 @app.route('/Schedule')
 def ScheduleView():
     # Check if user is loggedin, return redirect to login page if not
@@ -227,6 +233,10 @@ def ScheduleView():
     cursor.close()
     print(data)
     return render_template('Schedule.html', data=data)
+
+@app.route('/Schedule/add')
+@app.route('/Schedule/delete')
+@app.route('/Schedule/update')
 
 @app.route('/Station')
 def StationView():
@@ -242,6 +252,10 @@ def StationView():
     print(data)
     return render_template('Station.html', data=data)
 
+@app.route('/Station/add')
+@app.route('/Station/delete')
+@app.route('/Station/update')
+
 @app.route('/Track')
 def TrackView():
     # Check if user is loggedin, return redirect to login page if not
@@ -255,6 +269,10 @@ def TrackView():
     cursor.close()
     print(data)
     return render_template('Track.html', data=data)
+
+@app.route('/Track/add')
+@app.route('/Track/delete')
+@app.route('/Track/update')
 
 @app.route('/Train')
 def TrainView():
@@ -270,6 +288,9 @@ def TrainView():
     print(data)
     return render_template('Train.html', data=data)
 
+@app.route('/Train/add')
+@app.route('/Train/delete')
+@app.route('/Train/update')
 
 #run the application
 app.run(host='localhost', port=5003)
