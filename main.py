@@ -174,7 +174,7 @@ def cargo_add():
         car_number = request.form['carno']
         train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO Cargo values (NULL, %i, %i, %s, %i, %i)', (type,weight,owner,car_number,train_ID))
+        cursor.execute('INSERT INTO Cargo VALUES (NULL, %i, %i, %s, %i, %i)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         cursor.close()
         #cursor = mysql.connection.cursor()
