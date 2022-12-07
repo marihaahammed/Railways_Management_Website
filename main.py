@@ -163,7 +163,6 @@ def cargo_add():
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from Cargo")
         data = cursor.fetchall()
-        cursor.close()
         print(data)
         return render_template('cargoAdd.html', data = data) #we render the table
     
