@@ -140,7 +140,7 @@ def cargo_delete():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID))
         mysql.connection.commit()
-        return render_template('cargoDelete.html')
+        return redirect(url_for('cargo_delete'))
 
 #localhost:5003/cargo/update
 @app.route('/cargo/update', methods = ['GET', 'POST'])
@@ -164,7 +164,7 @@ def cargo_update():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('UPDATE Cargo SET cargo_ID=NULL, type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i', (type,weight,owner,car_number,train_ID, train_ID))
         mysql.connection.commit()
-        return redirect(url_for('cargo_add'))
+        return redirect(url_for('cargo_update'))
 
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
