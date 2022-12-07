@@ -159,8 +159,6 @@ def cargo_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    if request.method == 'GET':
-        return "Fill out the Search Form"
     
     if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
         type = request.form['type']
@@ -311,9 +309,9 @@ def TrainView():
     print(data)
     return render_template('Train.html', data=data)
 
-@app.route('/Train/add')
-@app.route('/Train/delete')
-@app.route('/Train/update')
+#@app.route('/Train/add')
+#@app.route('/Train/delete')
+#@app.route('/Train/update')
 
 #run the application
 app.run(host='localhost', port=5003)
