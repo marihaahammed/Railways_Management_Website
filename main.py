@@ -130,7 +130,7 @@ def cargo_delete():
 
     train_ID = request.form['train_ID']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("DELETE FROM 'Cargo' WHERE train_ID = %i", (train_ID))
+    cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID,))
     return render_template('cargoDelete.html')
 
 #localhost:5003/cargo/update
@@ -142,7 +142,7 @@ def cargo_update():
     if request.method == 'GET':
         cargo_ID = request.arg['cargo_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("SELECT * FROM 'Cargo' WHERE cargo_ID = %i", (cargo_ID))
+        cursor.execute('SELECT * FROM Cargo WHERE cargo_ID = %i', (cargo_ID,))
         cargo = cursor.fetchone()
         return render_template('editCargo.html', cargo=cargo)
     elif request.method == 'POST':
@@ -152,7 +152,7 @@ def cargo_update():
                 car_number = request.form['car_number']
                 train_ID = request.form['train_ID']
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
+                cursor.execute('UPDATE Cargo SET cargo_ID=NULL, type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i', (type,weight,owner,car_number,train_ID, train_ID))
 
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
