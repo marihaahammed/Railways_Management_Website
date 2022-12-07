@@ -174,16 +174,17 @@ def cargo_add():
         car_number = request.form['carno']
         train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("INSERT INTO 'Cargo' (NULL,type,weight,owner,car_number,train_ID) values (%i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
+        cursor.execute("INSERT INTO 'Cargo' (cargo_ID,type,weight,owner,car_number,train_ID) values (NULL, %i, %i, %s, %i, %i)", (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         cursor.close()
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * from Cargo")
-        data = cursor.fetchall()
-        cursor.close()
-        print(data)
-        return render_template('cargoAdd.html', data = data) #we render the table
-     
+        #cursor = mysql.connection.cursor()
+        #cursor.execute("SELECT * from Cargo")
+        #data = cursor.fetchall()
+        #cursor.close()
+        #print(data)
+        #return render_template('cargoAdd.html', data = data) #we render the table
+        return redirect(url_for('cargo_add'))
+
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
