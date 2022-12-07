@@ -132,7 +132,7 @@ table {
   border-collapse: collapse;
   max-width: 100%;
   text-align: center;
-  margin-left: 30%;
+  margin-left: 35%;
   margin-top: 5%;
 }
 th, td {
@@ -142,6 +142,10 @@ th, td {
 }
 
 tr:hover {background-color: #ffffff;}
+
 tr:nth-child(odd){
   background-color: #cacfd4;
+}
+tr:nth-child(odd):hover{
+  background-color: #cfe3f5;
 }
