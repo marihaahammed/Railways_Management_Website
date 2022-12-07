@@ -1,11 +1,5 @@
 /* CSS goes here */
 /* This is where the magic happens */
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 html, body{
   margin: 0;
   padding: 0;
@@ -129,4 +123,25 @@ right: 25%;
 height: 50%;
   padding: 10px; /* Some padding */
 text-align: center;
+}
+
+/* for tables */
+table {
+			 
+  padding: 5%;
+  border-collapse: collapse;
+  max-width: 100%;
+  text-align: center;
+  margin-left: 35%;
+  margin-top: 5%;
+}
+th, td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #bbb;
+}
+
+tr:hover {background-color: #ffffff;}
+tr:nth-child(odd){
+  background-color: #cacfd4;
 }
