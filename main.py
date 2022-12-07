@@ -128,10 +128,19 @@ def cargo_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
-    train_ID = request.form['train_ID']
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID,))
-    return render_template('cargoDelete.html')
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Cargo")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('cargoDelete.html', data = data) #we render the table
+
+    if request.method == 'POST' and 'train_ID' in request.form :
+        train_ID = request.form['train_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID,))
+        mysql.connection.commit()
+        return render_template('cargoDelete.html')
 
 #localhost:5003/cargo/update
 @app.route('/cargo/update', methods = ['GET', 'POST'])
