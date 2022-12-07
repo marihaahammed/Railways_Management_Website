@@ -176,6 +176,16 @@ def cargo_update():
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute("UPDATE 'Cargo' SET type=%i, weight=%i, owner=%s, car_number =%i, train_ID=%i where train_ID=%i", (type,weight,owner,car_number,train_ID, train_ID))
 
+@app.route('/cargo/add', methods = ['POST'])
+def cargo_add():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from Cargo")
+    mysql.connection.commit()
+    data = cursor.fetchall()
+    cursor.close()
+    print(data)
+    return render_template('cargoAdd.html', data = data)
+
 #http://localhost:5003/schedule-search
 @app.route('/schedule-search', methods = ['GET'])
 def sched_search():
