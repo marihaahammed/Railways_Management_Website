@@ -5,9 +5,19 @@
 		<title>Cargo</title>
 		<link rel ="stylesheet" type ="text/css" href ="static/railways.css">
 	</head>
-	<body>
-		<a href= "/EmployeePortal" >Back</a>
 
+	<body style="background-color: #e1e1e1">
+
+		<header class="logoHead">
+			<img class="logo" src="https://cdn.discordapp.com/attachments/692038836292943873/1049467247367835718/railwayLOGO.png">    
+		</header>
+
+		<nav style="text-align: left">
+			<ul>
+				<li><a href= "/EmployeePortal"> Back</a></li>
+			</ul>
+		</nav>
+		
 		<form method="POST">
 		  Type: <input name="type"/>
 		  <br/><br/>
@@ -22,7 +32,7 @@
 		  <button type="submit">Submit</button>
 		</form>
 
-		<table border="1" cellpadding="5" cellspacing="5">
+		<table>
 		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
 		{% for row in data %}
 		<tr>
