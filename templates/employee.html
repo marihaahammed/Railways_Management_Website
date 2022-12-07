@@ -2,7 +2,7 @@
 <html>
     <head>
         <title> Employee table</title>
-        <link rel ="stylesheet" type ="text/css" href ="static/railways.css">
+        <link rel ="stylesheet" type ="text/css" href ="railways.css">
         <style>
             
 
@@ -24,6 +24,21 @@
                 button:hover{
                     background-color:#ddd;
                 }
+
+                .button1{
+                border:none;
+                border-radius:5px;
+                padding:15px 30px;
+                font-size:18px;
+                cursor:pointer;
+                font-family: Garamond, Times New Roman, sans-serif;
+                }
+
+
+                button:hover{
+                    background-color:#ddd;
+                }
+    
 
             .dropdown .dropbtn {
                 font-size: 16px;    
@@ -63,8 +78,9 @@
             .dropdown-one .dItem {
                 color: black;
                 padding: 12px 18px;
+                min-width: 100px;
                 display: block;
-                text-align: left;
+                text-align: center;
             }
 
             .dropdown-one .dItem:hover, .dropdown-two a:hover {
@@ -95,51 +111,48 @@
             <div id="link1" class="dItem" href="#">Add
               <!--  Inside Dropdown -->
               <div class="dropdown-two">
-                <div class="dItem" class="file" href="#"> <button onclick="window.location.href ='cargo/add';"> <span> <b>Cargo</b></span> </button></div>
-                <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Route/add';"> <span> <b>Route</b></span> </button></div>
-                <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Schedule/add';"> <span> <b>Schedule</b></span> </button></div>
-                <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Station/add';"> <span> <b>Station</b></span> </button></div>
-                <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Track/add';"> <span> <b>Track</b></span> </button></div>
-                <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Train/add';"> <span> <b>Train</b></span> </button></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Cargo</span> </button1></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/Route/add';"> <span> Route</span> </button1></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/Schedule/add';"> <span> Schedule</span> </button1></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/Station/add';"> <span> Station</span> </button1></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/Track/add';"> <span> Track</span> </button1></div>
+                <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/Train/add';"> <span> Train</span> </button1></div>
 	      </div>
           </div>
             <div id="link1" class="dItem" href="#">Remove
                 <!--  Inside Dropdown -->
                 <div class="dropdown-two">
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/cargo/delete';"> <span> <b>Cargo</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Route/delete';"> <span> <b>Route</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Schedule/delete';"> <span> <b>Schedule</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Station/delete';"> <span> <b>Station</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Track/delete';"> <span> <b>Track</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Train/delete';"> <span> <b>Train</b></span> </button></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Cargo</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Route</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Schedule</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Station</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Track</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Train</span> </button1></div>
                 </div>
               </div>
               <div id="link1" class="dItem" href="#">Update
                 <!--  Inside Dropdown -->
                 <div class="dropdown-two">
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/cargo/update';"> <span> <b>Cargo</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Route/update';"> <span> <b>Route</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Schedule/update';"> <span> <b>Schedule</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Station/update';"> <span> <b>Station</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Track/update';"> <span> <b>Track</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Train/update';"> <span> <b>Train</b></span> </button></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Cargo</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Route</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Schedule</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Station</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Track</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Train</span> </button1></div>
                 </div>
               </div>
               <div id="link1" class="dItem" href="#">View
                 <!--  Inside Dropdown -->
                 <div class="dropdown-two">
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/cargo';"> <span> <b>Cargo</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Route';"> <span> <b>Route</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Schedule';"> <span> <b>Schedule</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Station';"> <span> <b>Station</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Track';"> <span> <b>Track</b></span> </button></div>
-                  <div class="dItem" class="file" href="#"><button onclick="window.location.href ='/Train';"> <span> <b>Train</b></span> </button></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Cargo</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Route</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Schedule</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Station</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Track</span> </button1></div>
+                  <div class="dItem" class="file" href="#"><button1 onclick="window.location.href ='/cargo/add';"> <span> Train</span> </button1></div>
                 </div>
               </div>
         </div>
       </div>
-
-
-
 </body>
 </html>
