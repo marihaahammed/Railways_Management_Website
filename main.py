@@ -123,7 +123,7 @@ def cargo():
     return render_template('cargo.html', data=data)
 
 #localhost:5003/cargo/delete
-@app.route('/cargo/delete', methods = ['POST'])
+@app.route('/cargo/delete', methods = ['GET', 'POST'])
 def cargo_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
