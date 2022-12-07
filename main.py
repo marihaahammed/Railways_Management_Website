@@ -176,7 +176,6 @@ def cargo_add():
         return render_template('cargoAdd.html', data = data) #we render the table
     
     if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
-        #cargo_ID = 'NULL'
         type = request.form['type']
         weight = request.form['weight']
         owner = request.form['owner']
@@ -185,18 +184,13 @@ def cargo_add():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('INSERT INTO Cargo VALUES (NULL, %s, %s, %s, %s, %s)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
-        #cursor = mysql.connection.cursor()
-        #cursor.execute("SELECT * from Cargo")
-        #data = cursor.fetchall()
-        #cursor.close()
-        #print(data)
-        #return render_template('cargoAdd.html', data = data) #we render the table
         return redirect(url_for('cargo_add'))
 
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         msg = 'Please fill out the form!'
-        return render_template('cargoAdd.html',msg = msg)
+    
+    return render_template('cargoAdd.html',msg = msg)
     
 
 #now need code to apply insertion
