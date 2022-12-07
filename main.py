@@ -135,10 +135,10 @@ def cargo_delete():
         print(data)
         return render_template('cargoDelete.html', data = data) #we render the table
 
-    if request.method == 'POST' and 'train_ID' in request.form :
-        train_ID = request.form['train_ID']
+    if request.method == 'POST' and 'cargo_ID' in request.form :
+        cargo_ID = request.form['cargo_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('DELETE FROM Cargo WHERE train_ID = %i', (train_ID))
+        cursor.execute('DELETE FROM Cargo WHERE cargo_ID = %s', (cargo_ID,))
         mysql.connection.commit()
         return redirect(url_for('cargo_delete'))
 
@@ -186,7 +186,7 @@ def cargo_add():
         car_number = request.form['carno']
         train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO Cargo VALUES (NULL, %i, %i, %s, %i, %i)', (type,weight,owner,car_number,train_ID))
+        cursor.execute('INSERT INTO Cargo VALUES (NULL, %s, %s, %s, %s, %s)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         return redirect(url_for('cargo_add'))
 
