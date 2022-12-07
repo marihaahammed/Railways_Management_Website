@@ -167,14 +167,14 @@ def cargo_add():
         return render_template('cargoAdd.html', data = data) #we render the table
     
     if request.method == 'POST' and 'type' in request.form and 'weight' in request.form and 'owner' in request.form and 'carno' in request.form and 'trainID' in request.form:
-        cargoID = request.form['cargoID']
+        #cargo_ID = 'NULL'
         type = request.form['type']
         weight = request.form['weight']
         owner = request.form['owner']
         car_number = request.form['carno']
         train_ID = request.form['trainID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO Cargo VALUES (%i, %i, %i, %s, %i, %i)', (cargoID,type,weight,owner,car_number,train_ID))
+        cursor.execute('INSERT INTO Cargo VALUES (NULL, %s, %s, %s, %s, %s)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         #cursor = mysql.connection.cursor()
         #cursor.execute("SELECT * from Cargo")
