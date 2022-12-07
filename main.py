@@ -165,6 +165,8 @@ def cargo_update():
 
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
+    msg = ''
+
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
@@ -185,16 +187,6 @@ def cargo_add():
         cursor.execute('INSERT INTO Cargo VALUES (NULL, %s, %s, %s, %s, %s)', (type,weight,owner,car_number,train_ID))
         mysql.connection.commit()
         return redirect(url_for('cargo_add'))
-
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        msg = 'Please fill out the form!'
-    
-    return render_template('cargoAdd.html',msg = msg)
-    
-
-#now need code to apply insertion
-    
 
 #http://localhost:5003/schedule-search
 @app.route('/schedule-search', methods = ['GET'])

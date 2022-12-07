@@ -19,19 +19,19 @@
 		</nav>
 		
 		<form method="POST">
-		  Type: <input name="type"/>
+		  Type: <input name="type" required/>
 		  <br/><br/>
-		  Weight: <input name="weight"/>
+		  Weight: <input name="weight" required />
 		  <br/><br/>
-                  Owner: <input name="owner"/>
+                  Owner: <input name="owner" required />
                   <br/><br/>
-                  Car Number: <input name="carno"/>
+                  Car Number: <input name="carno" required />
                   <br/><br/>
-                  Train ID: <input name="trainID"/>
+                  Train ID: <input name="trainID" required />
                   <br/><br/>
 		  <button type="submit">Submit</button>
 		</form>
-
+		<div class = "msg" > {{ msg }} </div>
 		<table>
 		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
 		{% for row in data %}
