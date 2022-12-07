@@ -6,18 +6,8 @@
 	</head>
 	<body>
 		<a href= "/EmployeePortal" >Back</a>
-		<table border="1" cellpadding="5" cellspacing="5">
-		<tr><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
-		{% for row in data %}
-		<tr>
-			{% for d in row %}
-			<td>{{d}}</td>
-			{% endfor %}
-		</tr>
-		{% endfor %}
-		</table>
 		
-		  <label for="type">Type:</label>
+		<label for="type">Type:</label>
   		  <input type="text" id="type" name="type"><br><br>
  		  <label for="weight">Weight:</label>
   		  <input type="text" id="weight" name="weight"><br><br>
@@ -27,7 +17,16 @@
   		  <input type="text" id="carno" name="carno"><br><br>
  		  <label for="trainID">Train ID:</label>
   		  <input type="text" id="trainID" name="trainID"><br><br>
-		
 		  <input type="submit" value="Submit Addition">
+		<table border="1" cellpadding="5" cellspacing="5">
+		<tr><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
+		{% for row in data %}
+		<tr>
+			{% for d in row %}
+			<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</table> 
 	</body>
 </html>
