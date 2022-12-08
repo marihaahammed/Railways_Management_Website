@@ -578,7 +578,7 @@ def train_add():
         return redirect(url_for('train_add'))
 
 @app.route('/Train/delete', methods = ['GET', 'POST'])
-def train_delte():
+def train_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
