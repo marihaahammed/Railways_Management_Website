@@ -115,10 +115,16 @@
 				.container {
 				position: relative;
 				}
-
+				form {
+					position: relative;
+					margin-top:5%;
+					margin-left: 32%;
+					align-content: center;
+				}
 				/* Bottom right text */
 				.text-block {
-				position: absolute; /* Position the background text */
+				 /* Position the background text */
+				top: 50%;
 				bottom: 25%; /* At the bottom. Use top:0 to append it to the top */
 				right: 25%;
 				background: rgb(0, 0, 0); /* Fallback color */
@@ -129,27 +135,33 @@
 				padding: 10px; /* Some padding */
 				text-align: center;
 				}
-
+				input{
+					
+				}
 				/* for tables */
 				table {
-							
+				position: relative;	
+				top: 50%;		
 				padding: 5%;
 				border-collapse: collapse;
 				max-width: 100%;
 				text-align: center;
-				margin-left: 35%;
+				margin-left: 31%;
 				margin-top: 5%;
 				}
 				th, td {
-				padding: 15px;
+				position: relative;
+				padding: 15px;  
 				text-align: center;
 				border-bottom: 1px solid #bbb;
+				align-content: center;
 				}
 
 				tr:hover {background-color: #ffffff;}
 
 				tr:nth-child(odd){
 				background-color: #cacfd4;
+				align-content:center;
 				}
 				tr:nth-child(odd):hover{
 				background-color: #cfe3f5;
@@ -169,6 +181,7 @@
 			</ul>
 		</nav>
 		<form method="POST">
+			<div class="text-block">
 		  Type: <input type="number" name="type" required/>
 		  <br/><br/>
 		  Weight: <input type="number" name="weight" required />
@@ -180,6 +193,7 @@
                   Train ID: <input type="number" name="trainID" required />
                   <br/><br/>
 		  <button type="submit">Submit</button>
+		  </div>
 		</form>
 		<table>
 		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
