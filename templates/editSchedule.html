@@ -218,16 +218,16 @@
 		
 		<form method="POST">
 			<div class="text-block">
-		  Schedule ID: <input type="number" name="sched_ID" required/>
-		  <br/><br/>
-		  Source: <input type="text" name="source" required/>
-		  <br/><br/>
-		  Destination: <input type="text" name="destination" required />
-		  <br/><br/>
-                  Start Time: <input type="text" name="start_time" required />
-                  <br/><br/>
-                  End Time: <input type="text" name="end_time" required />
-                  <br/><br/>
+				<div class="col-25"><label> Schedule ID: </label></div><div class="col-75"><input type="number" name="sched_ID" required/></div>
+				 <br/><br/>
+				<div class="col-25"><label> Type: </label></div><div class="col-75"><input type="number" name="source" required/></div>
+				 <br/><br/>
+				 <div class="col-25"><label>Weight: </label></div><div class="col-75"><input type="number" name="destination" required /></div>
+				 <br/><br/>
+				 <div class="col-25"><label> Owner: </label></div> <div class="col-75"><input type="text" name="start_time" required /></div>
+						 <br/><br/>
+						 <div class="col-25"><label> Car Number: </label></div><div class="col-75"><input type="number" name="end_time" required /></div>
+						 <br/><br/>
 			<div class = "msg" {{ msg }}></div>
 		  <button type="submit">Submit</button>
 			</div>
