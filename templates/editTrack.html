@@ -218,13 +218,13 @@
 		
 		<form method="POST">
 			<div class="text-block">
-		  Track ID: <input type="number" name="track_ID" required />
-                  <br/><br/>
-                  Direction: <input type="text" name="direction" required />
-                  <br/><br/>
-			<div class = "msg" {{ msg }}></div>
-		  <button type="submit">Submit</button>
-			</div>
+			 <div class="col-25"><label>Track ID: </label></div><div class="col-75"><input type="number" name="track_ID" required /></div>
+			 <br/><br/>
+			 <div class="col-25"><label>Direction: </label></div><div class="col-75"><input type="number" name="direction" required /></div>
+			 <br/><br/>
+			 <div class = "msg" {{ msg }}></div>
+		  	 <button type="submit">Submit</button>
+			 </div>
 		</form>
 		<table>
 		<tr><th>Track ID</th><th>Direction</th></tr>	

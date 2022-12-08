@@ -223,10 +223,11 @@
 		</nav>
 		
 		<form method="POST">
-			Direction: <input type="text" name="direction" required/>
-			<br/><br/>
-			<div class = "msg" {{ msg }}></div>
-		  <button type="submit">Submit</button>
+			<div class="text-block">
+			 <div class="col-25"><label>Direction: </label></div><div class="col-75"><input type="number" name="direction" required /></div>
+			 <br/><br/>
+			 <button type="submit">Submit</button>
+			 </div>
 		</form>
 		<table>
 		<tr><th>Track ID </th><th>Direction</th></tr>	
