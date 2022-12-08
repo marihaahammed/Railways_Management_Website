@@ -230,34 +230,71 @@ def RouteView():
     return render_template('Route.html', data=data)
 
 @app.route('/Route/add', methods = ['GET', 'POST'])
-def RouteAdd(): 
+def route_add(): 
     if 'loggedin' not in session:
         return redirect(url_for('login'))
-    
-    if request.method == 'GET':
-        return "Fill out the Add Form"
 
-    if request.method == 'POST' and 'routeID' in request.form and 'stops' in request.form:
-        routeID = request.form['routeID']
-        stops = request.form['stops']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("INSERT INTO 'Route' (routeID,stops) values (%i, %i)", (routeID,stops))
-        mysql.connection.commit()
+    if request.method == 'GET':
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * from Route")
         data = cursor.fetchall()
-        cursor.close()
         print(data)
-        return render_template('routeAdd.html', data = data)
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        msg = 'Please fill out the form!'
-        return render_template('routeAdd.html',msg = msg)
+        return render_template('cargoAdd.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'stops' in request.form:
+        stops = request.form['stops']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO Route VALUES (NULL, %s)', (stops,))
+        mysql.connection.commit()
+        return redirect(url_for('route_add'))
     
     
-@app.route('/Route/delete')
-@app.route('/Route/update')
+@app.route('/Route/delete', methods = ['GET', 'POST'])
+def route_delete(): 
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
 
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Route")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('cargoDelete.html', data = data) #we render the table
+
+    if request.method == 'POST' and 'cargo_ID' in request.form :
+        route_ID = request.form['route_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('DELETE FROM Route WHERE route_ID = %s', (route_ID,))
+        mysql.connection.commit()
+        return redirect(url_for('route_delete'))
+@app.route('/Route/update')
+def route_update():
+    msg = ''
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Route")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('routeUpdate.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'route_ID' in request.form and 'stops' in request.form:
+        route_ID = request.form['route_ID']
+        stops = request.form['stops']
+        cursor = mysql.connection.cursor()
+        #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        mysql.connection.commit()
+        #response = cursor.fetchone()
+        if car_number <= response:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('UPDATE Route SET stops=%s WHERE route_ID=%s', (stops,route_ID))
+            mysql.connection.commit()
+            return redirect(url_for('route_update'))
+        else:
+            msg = 'Train length is too long, It will not be added!'
+            return render_template('editCargo.html', msg = msg)
 @app.route('/Schedule')
 def ScheduleView():
     # Check if user is loggedin, return redirect to login page if not
@@ -273,9 +310,75 @@ def ScheduleView():
     return render_template('Schedule.html', data=data)
 
 @app.route('/Schedule/add')
-@app.route('/Schedule/delete')
-@app.route('/Schedule/update')
+def schedule_add(): 
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
 
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Schedule")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('scheduleAdd.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'source' in request.form and 'destination' in request.form and 'start_time' in request.form and 'end_time' in request.form:
+        source = request.form['source']
+        dest = request.form['destination']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO Schedule VALUES (NULL, %s, %s, %s, %s)', (source,dest,start_time,end_time,))
+        mysql.connection.commit()
+        return redirect(url_for('schedule_add'))
+@app.route('/Schedule/delete')
+def schedule_delete():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Route")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('scheduleDelete.html', data = data) #we render the table
+
+    if request.method == 'POST' and 'sched_ID' in request.form :
+        sched_ID = request.form['sched_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('DELETE FROM Route WHERE sched_ID = %s', (sched_ID,))
+        mysql.connection.commit()
+        return redirect(url_for('schedule_delete'))
+@app.route('/Schedule/update')
+def schedule_update():
+    msg = ''
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Schedule")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('scheduleUpdate.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'sched_ID' in request.form and 'source' in request.form and 'destination' in request.form and 'start_time' in request.form and 'end_time' in request.form:
+        sched_ID = request.form['sched_ID']
+        source = request.form['source']
+        dest = request.form['destination']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        mysql.connection.commit()
+        response = cursor.fetchone()
+        if car_number <= response:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('UPDATE SChedule SET source=%s, dest=%s, start_time=%s, end_time=%s WHERE sched_ID=%s', (source,dest,start_time,end_time,sched_ID))
+            mysql.connection.commit()
+            return redirect(url_for('schedule_update'))
+        else:
+            msg = 'Train length is too long, It will not be added!'
+            return render_template('editCargo.html', msg = msg)
 @app.route('/Station')
 def StationView():
     # Check if user is loggedin, return redirect to login page if not
@@ -291,8 +394,72 @@ def StationView():
     return render_template('Station.html', data=data)
 
 @app.route('/Station/add')
+def station_add():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Station")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('stationAdd.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'name' in request.form and 'location' in request.form:
+        name = request.form['name']
+        location = request.form['location']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO Station VALUES (NULL, %s, %s)', (name,location,))
+        mysql.connection.commit()
+        return redirect(url_for('station_add'))
+    
 @app.route('/Station/delete')
+def station_delete():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Station")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('stationDelete.html', data = data) #we render the table
+
+    if request.method == 'POST' and 'station_ID' in request.form :
+        station_ID = request.form['station_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('DELETE FROM Station WHERE station_ID = %s', (station_ID,))
+        mysql.connection.commit()
+        return redirect(url_for('station_delete'))
 @app.route('/Station/update')
+def station_update():
+    msg = ''
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Station")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('stationUpdate.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'station_ID' in request.form and 'name' in request.form and 'location' in request.form:
+        station_ID = request.form['station_ID']
+        name = request.form['name']
+        location = request.form['location']
+        cursor = mysql.connection.cursor()
+        #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        mysql.connection.commit()
+        #response = cursor.fetchone()
+        if car_number <= response:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('UPDATE Station SET name=%s, location=%s WHERE station_ID=%s', (name,location,station_ID))
+            mysql.connection.commit()
+            return redirect(url_for('station_update'))
+        else:
+            msg = 'Train length is too long, It will not be added!'
+            return render_template('editCargo.html', msg = msg)
 
 @app.route('/Track')
 def TrackView():
@@ -309,8 +476,71 @@ def TrackView():
     return render_template('Track.html', data=data)
 
 @app.route('/Track/add')
+def track_add():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Track")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('trackAdd.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'direction' in request.form:
+        direction = request.form['direction']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO Track VALUES (NULL, %s)', (direction,))
+        mysql.connection.commit()
+        return redirect(url_for('track_add'))
+
 @app.route('/Track/delete')
+def track_delete():
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Track")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('trackDelete.html', data = data) #we render the table
+
+    if request.method == 'POST' and 'track_ID' in request.form :
+        track_ID = request.form['track_ID']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('DELETE FROM Track WHERE track_ID = %s', (track_ID,))
+        mysql.connection.commit()
+        return redirect(url_for('track_delete'))
+
 @app.route('/Track/update')
+def track_update():
+    msg = ''
+    if 'loggedin' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * from Track")
+        data = cursor.fetchall()
+        print(data)
+        return render_template('trackUpdate.html', data = data) #we render the table
+    
+    if request.method == 'POST' and 'track_ID' in request.form and 'direction' in request.form:
+        track_ID = request.form['track_ID']
+        direction = request.form['direction']
+        cursor = mysql.connection.cursor()
+        #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        mysql.connection.commit()
+        #response = cursor.fetchone()
+        if car_number <= response:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('UPDATE Track SET direction=%s WHERE track_ID=%s', (direction,track_ID))
+            mysql.connection.commit()
+            return redirect(url_for('track_update'))
+        else:
+            msg = 'Train length is too long, It will not be added!'
+            return render_template('trackUpdate.html', msg = msg)
 
 @app.route('/Train')
 def TrainView():
