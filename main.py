@@ -261,12 +261,13 @@ def route_delete():
         print(data)
         return render_template('routeDelete.html', data = data) #we render the table
 
-    if request.method == 'POST' and 'route_ID' in request.form :
+    if request.method == 'POST' and 'route_ID' in request.form:
         route_ID = request.form['route_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('DELETE FROM Route WHERE route_ID = %s', (route_ID,))
         mysql.connection.commit()
         return redirect(url_for('route_delete'))
+    
 @app.route('/Route/update', methods = ['GET', 'POST'])
 def route_update():
     msg = ''
@@ -295,6 +296,7 @@ def route_update():
         #else:
            # msg = 'Train length is too long, It will not be added!'
             #return render_template('editCargo.html', msg = msg)
+
 @app.route('/Schedule')
 def ScheduleView():
     # Check if user is loggedin, return redirect to login page if not
@@ -330,6 +332,7 @@ def schedule_add():
         cursor.execute('INSERT INTO Schedule VALUES (NULL, %s, %s, %s, %s)', (source,dest,start_time,end_time,))
         mysql.connection.commit()
         return redirect(url_for('schedule_add'))
+
 @app.route('/Schedule/delete', methods = ['GET', 'POST'])
 def schedule_delete():
     if 'loggedin' not in session:
@@ -348,6 +351,7 @@ def schedule_delete():
         cursor.execute('DELETE FROM Schedule WHERE sched_ID = %s', (sched_ID,))
         mysql.connection.commit()
         return redirect(url_for('schedule_delete'))
+
 @app.route('/Schedule/update', methods = ['GET', 'POST'])
 def schedule_update():
     msg = ''
@@ -379,6 +383,7 @@ def schedule_update():
         #else:
            # msg = 'Train length is too long, It will not be added!'
            # return render_template('editCargo.html', msg = msg)
+
 @app.route('/Station')
 def StationView():
     # Check if user is loggedin, return redirect to login page if not
@@ -431,6 +436,7 @@ def station_delete():
         cursor.execute('DELETE FROM Station WHERE station_ID = %s', (station_ID,))
         mysql.connection.commit()
         return redirect(url_for('station_delete'))
+
 @app.route('/Station/update', methods = ['GET', 'POST'])
 def station_update():
     #msg = ''
