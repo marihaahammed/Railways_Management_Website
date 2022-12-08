@@ -1,12 +1,12 @@
 * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-family: Garamond, Times New Roman, sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 body {
-    background-color: #435165;
+    background-color: #e1e1e1;
     margin: 0;
 }
 .login, .register {
@@ -19,7 +19,7 @@ body {
     text-align: center;
     color: #5b6574;
     font-size: 24px;
-    padding: 20px 0 20px 0;
+    padding: 20px 0 20px 10px;
     border-bottom: 1px solid #dee0e4;
 }
 .login .links, .register .links {
@@ -37,8 +37,8 @@ body {
     color: #9da3ac;
 }
 .login .links a.active, .register .links a.active {
-    border-bottom: 3px solid #3274d6;
-    color: #3274d6;
+    border-bottom: 3px solid #c0d7f9;
+    color: #5b6574;
 }
 .login form, .register form {
     display: flex;
@@ -52,8 +52,8 @@ body {
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #3274d6;
-    color: #ffffff;
+    background-color: #c0d7f9;
+    color: rgb(100, 100, 100);
 }
 .login form input[type="password"], .login form input[type="text"], .login form input[type="email"], .register form input[type="password"], .register form input[type="text"], .register form input[type="email"] {
     width: 310px;
@@ -66,15 +66,16 @@ body {
     width: 100%;
     padding: 15px;
     margin-top: 20px;
-    background-color: #3274d6;
+    background-color: #c0d7f9;
     border: 0;
     cursor: pointer;
     font-weight: bold;
-    color: #ffffff;
+    color: rgb(100, 100, 100);
     transition: background-color 0.2s;
+    font-size: 20px;
 }
 .login form input[type="submit"]:hover, .register form input[type="submit"]:hover {
-    background-color: #2868c7;
+    background-color: #c0d7f9;
     transition: background-color 0.2s;
 }
 .navtop {
@@ -128,7 +129,7 @@ body.loggedin {
     color: #4a536e;
 }
 .content > p, .content > div {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px 0 rgba(170, 189, 253, 0.1);
     margin: 25px 0;
     padding: 25px;
   background-color: #fff;
