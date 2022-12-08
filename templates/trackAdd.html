@@ -240,28 +240,3 @@
 		</table> 
 	</body>
 </html>
-
-		<nav style="text-align: left">
-			<ul>
-				<li><a href= "/EmployeePortal"> Back</a></li>
-			</ul>
-		</nav>
-		<form method="POST">
-			<div class="text-block">
-          <div class="col-25"><label>Direction: </label></div><div class="col-75"><input type="text" name="direction" required /></div>
-          <br/><br/>
-		  <button type="submit">Submit</button>
-		  </div>
-		</form>
-		<table>
-		<tr><th>Track ID </th><th>Direction </th></tr>	
-		{% for row in data %}
-		<tr>
-			{% for d in row %}
-			<td>{{d}}</td>
-			{% endfor %}
-		</tr>
-		{% endfor %}
-		</table> 
-	</body>
-</html>
