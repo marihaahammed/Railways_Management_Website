@@ -283,18 +283,18 @@ def route_update():
     if request.method == 'POST' and 'route_ID' in request.form and 'stops' in request.form:
         route_ID = request.form['route_ID']
         stops = request.form['stops']
-        cursor = mysql.connection.cursor()
+        #cursor = mysql.connection.cursor()
         #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
-        mysql.connection.commit()
+        #mysql.connection.commit()
         #response = cursor.fetchone()
-        if car_number <= response:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('UPDATE Route SET stops=%s WHERE route_ID=%s', (stops,route_ID))
-            mysql.connection.commit()
-            return redirect(url_for('route_update'))
-        else:
-            msg = 'Train length is too long, It will not be added!'
-            return render_template('editCargo.html', msg = msg)
+        #if car_number <= response:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE Route SET stops=%s WHERE route_ID=%s', (stops,route_ID))
+        mysql.connection.commit()
+        return redirect(url_for('route_update'))
+        #else:
+           # msg = 'Train length is too long, It will not be added!'
+            #return render_template('editCargo.html', msg = msg)
 @app.route('/Schedule')
 def ScheduleView():
     # Check if user is loggedin, return redirect to login page if not
@@ -359,7 +359,7 @@ def schedule_update():
         cursor.execute("SELECT * from Schedule")
         data = cursor.fetchall()
         print(data)
-        return render_template('scheduleUpdate.html', data = data) #we render the table
+        return render_template('editSchedule.html', data = data) #we render the table
     
     if request.method == 'POST' and 'sched_ID' in request.form and 'source' in request.form and 'destination' in request.form and 'start_time' in request.form and 'end_time' in request.form:
         sched_ID = request.form['sched_ID']
@@ -367,18 +367,18 @@ def schedule_update():
         dest = request.form['destination']
         start_time = request.form['start_time']
         end_time = request.form['end_time']
-        cursor = mysql.connection.cursor()
-        cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        # cursor = mysql.connection.cursor()
+        # cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+        # mysql.connection.commit()
+        # response = cursor.fetchone()
+        #if car_number <= response:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE SChedule SET source=%s, dest=%s, start_time=%s, end_time=%s WHERE sched_ID=%s', (source,dest,start_time,end_time,sched_ID))
         mysql.connection.commit()
-        response = cursor.fetchone()
-        if car_number <= response:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('UPDATE SChedule SET source=%s, dest=%s, start_time=%s, end_time=%s WHERE sched_ID=%s', (source,dest,start_time,end_time,sched_ID))
-            mysql.connection.commit()
-            return redirect(url_for('schedule_update'))
-        else:
-            msg = 'Train length is too long, It will not be added!'
-            return render_template('editCargo.html', msg = msg)
+        return redirect(url_for('schedule_update'))
+        #else:
+           # msg = 'Train length is too long, It will not be added!'
+           # return render_template('editCargo.html', msg = msg)
 @app.route('/Station')
 def StationView():
     # Check if user is loggedin, return redirect to login page if not
@@ -442,7 +442,7 @@ def station_update():
         cursor.execute("SELECT * from Station")
         data = cursor.fetchall()
         print(data)
-        return render_template('stationUpdate.html', data = data) #we render the table
+        return render_template('editStation.html', data = data) #we render the table
     
     if request.method == 'POST' and 'station_ID' in request.form and 'name' in request.form and 'location' in request.form:
         station_ID = request.form['station_ID']
@@ -450,16 +450,16 @@ def station_update():
         location = request.form['location']
         cursor = mysql.connection.cursor()
         #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
-        mysql.connection.commit()
+        #mysql.connection.commit()
         #response = cursor.fetchone()
-        if car_number <= response:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('UPDATE Station SET name=%s, location=%s WHERE station_ID=%s', (name,location,station_ID))
-            mysql.connection.commit()
-            return redirect(url_for('station_update'))
-        else:
-            msg = 'Train length is too long, It will not be added!'
-            return render_template('editCargo.html', msg = msg)
+        #if car_number <= response:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE Station SET name=%s, location=%s WHERE station_ID=%s', (name,location,station_ID))
+        mysql.connection.commit()
+        return redirect(url_for('station_update'))
+        #else:
+           # msg = 'Train length is too long, It will not be added!'
+            #return render_template('editCargo.html', msg = msg)
 
 @app.route('/Track')
 def TrackView():
@@ -524,23 +524,23 @@ def track_update():
         cursor.execute("SELECT * from Track")
         data = cursor.fetchall()
         print(data)
-        return render_template('trackUpdate.html', data = data) #we render the table
+        return render_template('editTrack.html', data = data) #we render the table
     
     if request.method == 'POST' and 'track_ID' in request.form and 'direction' in request.form:
         track_ID = request.form['track_ID']
         direction = request.form['direction']
         cursor = mysql.connection.cursor()
         #cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
-        mysql.connection.commit()
+        #mysql.connection.commit()
         #response = cursor.fetchone()
-        if car_number <= response:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('UPDATE Track SET direction=%s WHERE track_ID=%s', (direction,track_ID))
-            mysql.connection.commit()
-            return redirect(url_for('track_update'))
-        else:
-            msg = 'Train length is too long, It will not be added!'
-            return render_template('trackUpdate.html', msg = msg)
+        #if car_number <= response:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE Track SET direction=%s WHERE track_ID=%s', (direction,track_ID))
+        mysql.connection.commit()
+        return redirect(url_for('track_update'))
+        #else:
+            #msg = 'Train length is too long, It will not be added!'
+            #return render_template('trackUpdate.html', msg = msg)
 
 @app.route('/Train')
 def TrainView():
