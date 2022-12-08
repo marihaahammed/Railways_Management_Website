@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
+from ast import literal_eval
 import MySQLdb.cursors
 import re
 
@@ -163,19 +164,19 @@ def cargo_update():
         owner = request.form['owner']
         car_number = request.form['carno']
         train_ID = request.form['train_ID']
-        cursor = mysql.connection.cursor()
-        cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+#        cursor = mysql.connection.cursor()
+#        cursor.execute('SELECT train_length FROM Train WHERE train_ID = %s', (train_ID,))
+#        mysql.connection.commit()
+#        response = cursor.fetchone()
+#        if car_number <= str(response):
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('UPDATE Cargo SET type=%s, weight=%s, owner=%s, car_number =%s, train_ID=%s WHERE cargo_ID=%s', (type,weight,owner,car_number,train_ID, cargo_ID))
         mysql.connection.commit()
-        response = cursor.fetchone()
-        if car_number <= response:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('UPDATE Cargo SET type=%s, weight=%s, owner=%s, car_number =%s, train_ID=%s WHERE cargo_ID=%s', (type,weight,owner,car_number,train_ID, cargo_ID))
-            mysql.connection.commit()
-            return redirect(url_for('cargo_update'))
-        else:
-            msg = 'Train length is too long, It will not be added!'
-            return render_template('editCargo.html', msg = msg)
-
+        return redirect(url_for('cargo_update'))
+#        else:
+#            msg = 'Train length is too long, It will not be added!'
+           # return render_template('editCargo.html', msg = msg)
+#            return redirect(url_for('cargo_update'))
 @app.route('/cargo/add', methods = ['GET', 'POST'])
 def cargo_add():
 
