@@ -175,31 +175,31 @@
 				}
 				/* for tables */
 				table {
-					position: relative;	
-					top: 50%;		
-					padding: 5%;
-					border-collapse: collapse;
-					max-width: 100%;
-					text-align: center;
-					margin-left: 50%;
-					margin-top: 5%;
+				position: relative;	
+				top: 50%;		
+				padding: 5%;
+				border-collapse: collapse;
+				max-width: 100%;
+				text-align: center;
+				margin-left: 50%;
+				margin-top: 5%;
 				}
 				th, td {
-					position: relative;
-					padding: 15px;  
-					text-align: center;
-					border-bottom: 1px solid #bbb;
-					align-content: center;
+				position: relative;
+				padding: 15px;  
+				text-align: center;
+				border-bottom: 1px solid #bbb;
+				align-content: center;
 				}
 
 				tr:hover {background-color: #ffffff;}
 
 				tr:nth-child(odd){
-					background-color: #cacfd4;
-					align-content:center;
+				background-color: #cacfd4;
+				align-content:center;
 				}
 				tr:nth-child(odd):hover{
-					background-color: #cfe3f5;
+				background-color: #cfe3f5;
 				}
 		</style>
 	</head>
@@ -215,24 +215,21 @@
 				<li><a href= "/EmployeePortal"> Back</a></li>
 			</ul>
 		</nav>
-		
 		<form method="POST">
 			<div class="text-block">
-				<div class="col-25"><label> Type: </label></div><div class="col-75"><input type="number" name="type" required/></div>
-				 <br/><br/>
-				 <div class="col-25"><label>Weight: </label></div><div class="col-75"><input type="number" name="weight" required /></div>
-				 <br/><br/>
-				 <div class="col-25"><label> Owner: </label></div> <div class="col-75"><input type="text" name="owner" required /></div>
-						 <br/><br/>
-						 <div class="col-25"><label> Car Number: </label></div><div class="col-75"><input type="number" name="carno" required /></div>
-						 <br/><br/>
-						 <div class="col-25"><label>Train ID: </label></div><div class="col-75"><input type="number" name="trainID" required /></div>
-						 <br/><br/>
-				 <button type="submit">Submit</button>
-				 </div>
+		 <div class="col-25"><label> Source: </label></div><div class="col-75"><input type="text" name="source" required/></div>
+		  <br/><br/>
+		  <div class="col-25"><label>Destination: </label></div><div class="col-75"><input type="text" name="destination" required /></div>
+		  <br/><br/>
+		  <div class="col-25"><label> Start Time: </label></div> <div class="col-75"><input type="text" name="start_time" required /></div>
+                  <br/><br/>
+		  <div class="col-25"><label> End Time: </label></div><div class="col-75"><input type="text" name="end_time" required /></div>
+                  <br/><br/>
+		  <button type="submit">Submit</button>
+		  </div>
 		</form>
 		<table>
-		<tr><th>Cargo ID </th><th>Type</th><th>Weight</th><th>Owner</th><th>Car Number</th><th>Train ID</th></tr>	
+		<tr><th>Schedule ID</th><th>Source</th><th>Destination</th><th>Start Time</th><th>End Time</th></tr>	
 		{% for row in data %}
 		<tr>
 			{% for d in row %}

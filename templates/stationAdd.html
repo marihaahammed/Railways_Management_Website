@@ -217,14 +217,15 @@
 		</nav>
 		<form method="POST">
 			<div class="text-block">
-		  <div class="col-25"><label>Name: </label></div><div class="col-75"><input type="number" name="name" required /></div>
-		  <div class="col-25"><label>Location: </label></div><div class="col-75"><input type="number" name="location" required /></div>
-          <br/><br/>
+		 <div class="col-25"><label> Name: </label></div><div class="col-75"><input type="text" name="name" required/></div>
+		  <br/><br/>
+		  <div class="col-25"><label>Location: </label></div><div class="col-75"><input type="text" name="location" required /></div>
+		  <br/><br/>
 		  <button type="submit">Submit</button>
 		  </div>
 		</form>
 		<table>
-		<tr><th>Station ID </th><th>Name </th><th>Location </th></tr>	
+		<tr><th>Station ID</th><th>Name</th><th>Location</th></tr>	
 		{% for row in data %}
 		<tr>
 			{% for d in row %}
