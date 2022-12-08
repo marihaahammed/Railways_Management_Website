@@ -259,9 +259,9 @@ def route_delete():
         cursor.execute("SELECT * from Route")
         data = cursor.fetchall()
         print(data)
-        return render_template('cargoDelete.html', data = data) #we render the table
+        return render_template('routeDelete.html', data = data) #we render the table
 
-    if request.method == 'POST' and 'cargo_ID' in request.form :
+    if request.method == 'POST' and 'route_ID' in request.form :
         route_ID = request.form['route_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('DELETE FROM Route WHERE route_ID = %s', (route_ID,))
