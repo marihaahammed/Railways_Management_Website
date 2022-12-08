@@ -267,7 +267,7 @@ def route_delete():
         cursor.execute('DELETE FROM Route WHERE route_ID = %s', (route_ID,))
         mysql.connection.commit()
         return redirect(url_for('route_delete'))
-@app.route('/Route/update')
+@app.route('/Route/update', methods = ['GET', 'POST'])
 def route_update():
     msg = ''
     if 'loggedin' not in session:
@@ -309,7 +309,7 @@ def ScheduleView():
     print(data)
     return render_template('Schedule.html', data=data)
 
-@app.route('/Schedule/add')
+@app.route('/Schedule/add', methods = ['GET', 'POST'])
 def schedule_add(): 
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -330,14 +330,14 @@ def schedule_add():
         cursor.execute('INSERT INTO Schedule VALUES (NULL, %s, %s, %s, %s)', (source,dest,start_time,end_time,))
         mysql.connection.commit()
         return redirect(url_for('schedule_add'))
-@app.route('/Schedule/delete')
+@app.route('/Schedule/delete', methods = ['GET', 'POST'])
 def schedule_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
 
     if request.method == 'GET':
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * from Route")
+        cursor.execute("SELECT * from Schedule")
         data = cursor.fetchall()
         print(data)
         return render_template('scheduleDelete.html', data = data) #we render the table
@@ -348,7 +348,7 @@ def schedule_delete():
         cursor.execute('DELETE FROM Schedule WHERE sched_ID = %s', (sched_ID,))
         mysql.connection.commit()
         return redirect(url_for('schedule_delete'))
-@app.route('/Schedule/update')
+@app.route('/Schedule/update', methods = ['GET', 'POST'])
 def schedule_update():
     msg = ''
     if 'loggedin' not in session:
@@ -393,7 +393,7 @@ def StationView():
     print(data)
     return render_template('Station.html', data=data)
 
-@app.route('/Station/add')
+@app.route('/Station/add', methods = ['GET', 'POST'])
 def station_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -413,7 +413,7 @@ def station_add():
         mysql.connection.commit()
         return redirect(url_for('station_add'))
     
-@app.route('/Station/delete')
+@app.route('/Station/delete', methods = ['GET', 'POST'])
 def station_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -431,7 +431,7 @@ def station_delete():
         cursor.execute('DELETE FROM Station WHERE station_ID = %s', (station_ID,))
         mysql.connection.commit()
         return redirect(url_for('station_delete'))
-@app.route('/Station/update')
+@app.route('/Station/update', methods = ['GET', 'POST'])
 def station_update():
     #msg = ''
     if 'loggedin' not in session:
@@ -475,7 +475,7 @@ def TrackView():
     print(data)
     return render_template('Track.html', data=data)
 
-@app.route('/Track/add')
+@app.route('/Track/add', methods = ['GET', 'POST'])
 def track_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -494,7 +494,7 @@ def track_add():
         mysql.connection.commit()
         return redirect(url_for('track_add'))
 
-@app.route('/Track/delete')
+@app.route('/Track/delete', methods = ['GET', 'POST'])
 def track_delete():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -513,7 +513,7 @@ def track_delete():
         mysql.connection.commit()
         return redirect(url_for('track_delete'))
 
-@app.route('/Track/update')
+@app.route('/Track/update', methods = ['GET', 'POST'])
 def track_update():
     msg = ''
     if 'loggedin' not in session:
@@ -556,7 +556,7 @@ def TrainView():
     print(data)
     return render_template('Train.html', data=data)
 
-@app.route('/Train/add')
+@app.route('/Train/add', methods = ['GET', 'POST'])
 def train_add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -577,7 +577,7 @@ def train_add():
         mysql.connection.commit()
         return redirect(url_for('train_add'))
 
-@app.route('/Train/delete')
+@app.route('/Train/delete', methods = ['GET', 'POST'])
 def train_delte():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
@@ -596,7 +596,7 @@ def train_delte():
         mysql.connection.commit()
         return redirect(url_for('train_delete'))
 
-@app.route('/Train/update')
+@app.route('/Train/update', methods = ['GET', 'POST'])
 def train_update():
     #msg = ''
     if 'loggedin' not in session:
