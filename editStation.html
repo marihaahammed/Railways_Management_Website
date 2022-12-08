@@ -217,15 +217,44 @@
 		</nav>
 		
 		<form method="POST">
-			<div class="text-block">
-                  <br/><br/>
-                  Station ID: <input type="number" name="station_ID" required />
-                  <br/><br/>
+		  Station ID: <input type="number" name="station_ID" required/>
+		  <br/><br/>
+		  Name: <input type="text" name="name" required/>
+		  <br/><br/>
+		  Location: <input type="text" name="location" required />
+		  <br/><br/>
+			<div class = "msg" {{ msg }}></div>
 		  <button type="submit">Submit</button>
-			</div>
 		</form>
 		<table>
-		<tr><th>Station ID</th><th>Name</th><th>Location</th></tr>	
+		<tr><th>Station ID </th><th>Name</th><th>Location</th></tr>	
+		{% for row in data %}
+		<tr>
+			{% for d in row %}
+			<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</table> 
+	</body>
+</html>
+
+		<nav style="text-align: left">
+			<ul>
+				<li><a href= "/EmployeePortal"> Back</a></li>
+			</ul>
+		</nav>
+		<form method="POST">
+			<div class="text-block">
+		  <div class="col-25"><label>Station ID: </label></div><div class="col-75"><input type="number" name="station_ID" required /></div>
+          <div class="col-25"><label>Name: </label></div><div class="col-75"><input type="text" name="name" required /></div>
+          <div class="col-25"><label>Location: </label></div><div class="col-75"><input type="text" name="location" required /></div>
+          <br/><br/>
+		  <button type="submit">Submit</button>
+		  </div>
+		</form>
+		<table>
+		<tr><th>Station ID </th><th>Name </th><th>Location </th></tr>	
 		{% for row in data %}
 		<tr>
 			{% for d in row %}
