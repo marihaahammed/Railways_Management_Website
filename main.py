@@ -278,7 +278,7 @@ def route_update():
         cursor.execute("SELECT * from Route")
         data = cursor.fetchall()
         print(data)
-        return render_template('routeUpdate.html', data = data) #we render the table
+        return render_template('editRoute.html', data = data) #we render the table
     
     if request.method == 'POST' and 'route_ID' in request.form and 'stops' in request.form:
         route_ID = request.form['route_ID']
