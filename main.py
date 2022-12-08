@@ -239,7 +239,7 @@ def route_add():
         cursor.execute("SELECT * from Route")
         data = cursor.fetchall()
         print(data)
-        return render_template('cargoAdd.html', data = data) #we render the table
+        return render_template('routeAdd.html', data = data) #we render the table
     
     if request.method == 'POST' and 'stops' in request.form:
         stops = request.form['stops']
