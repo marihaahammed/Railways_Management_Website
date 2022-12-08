@@ -345,7 +345,7 @@ def schedule_delete():
     if request.method == 'POST' and 'sched_ID' in request.form :
         sched_ID = request.form['sched_ID']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('DELETE FROM Route WHERE sched_ID = %s', (sched_ID,))
+        cursor.execute('DELETE FROM Schedule WHERE sched_ID = %s', (sched_ID,))
         mysql.connection.commit()
         return redirect(url_for('schedule_delete'))
 @app.route('/Schedule/update')
@@ -373,7 +373,7 @@ def schedule_update():
         # response = cursor.fetchone()
         #if car_number <= response:
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('UPDATE SChedule SET source=%s, dest=%s, start_time=%s, end_time=%s WHERE sched_ID=%s', (source,dest,start_time,end_time,sched_ID))
+        cursor.execute('UPDATE Schedule SET source=%s, dest=%s, start_time=%s, end_time=%s WHERE sched_ID=%s', (source,dest,start_time,end_time,sched_ID))
         mysql.connection.commit()
         return redirect(url_for('schedule_update'))
         #else:
