@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Cargo</title>
+		<link rel ="stylesheet" type ="text/css" href ="static/railways.css">
+	</head>
+
+	<body style="background-color: #e1e1e1">
+
+		<header class="logoHead">
+			<img class="logo" src="https://cdn.discordapp.com/attachments/692038836292943873/1049467247367835718/railwayLOGO.png">    
+		</header>
+
+		<nav style="text-align: left">
+			<ul>
+				<li><a href= "/EmployeePortal"> Back</a></li>
+			</ul>
+		</nav>
+		
+		<form method="POST">
+		  Station ID: <input type="number" name="station_ID" required/>
+		  <br/><br/>
+		  Name: <input type="text" name="name" required/>
+		  <br/><br/>
+		  Location: <input type="text" name="location" required />
+		  <br/><br/>
+			<div class = "msg" {{ msg }}></div>
+		  <button type="submit">Submit</button>
+		</form>
+		<table>
+		<tr><th>Station ID </th><th>Name</th><th>Location</th></tr>	
+		{% for row in data %}
+		<tr>
+			{% for d in row %}
+			<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		</table> 
+	</body>
+</html>
