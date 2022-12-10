@@ -11,7 +11,7 @@ app.secret_key = 'your secret key'
 # Enter your database connection details below
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'yshaikh'
-app.config['MYSQL_PASSWORD'] = 'dJTy7cg2'
+app.config['MYSQL_PASSWORD'] = 'x' #placeholder
 app.config['MYSQL_DB'] = 'yshaikh'
 
 # Intialize MySQL
